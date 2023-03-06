@@ -112,6 +112,15 @@ export type CustomInfoBar = {
 
 export const Info = ({info, theme, infoRef}: CustomInfoBar) => {
 
+  console.log("|---> (re)rendering info bar");
+
+  useEffect(() => {
+    console.log("---------- infor bar mounted ----------");
+    return () => {
+      console.log("---------- info bar unmounted ----------");
+    }
+  }, []);
+
   return (
     <ThemeProvider theme={theme}>
       {(Object.keys(info).length === 0) ? `` : <StyledDiv key="info_bar" className={"custom_info_bar " + (info.name? info.name : "")} css={info.css} style={info.style}>
@@ -135,6 +144,15 @@ export type CustomButtonType = {
 export const Button = ({button, theme, themeProp, executeAll}: CustomButtonType) => {
   const [toggle, setToggle] = useState(false);     //this toggle is currently not being used
   const ref = useRef<HTMLButtonElement>(null);
+
+  console.log("|------> (re)rendering button: " + button.name);
+
+  useEffect(() => {
+    console.log("--------- button mounted ----------");
+    return () => {
+      console.log("--------- button unmounted ----------");
+    }
+  }, []);
 
   const execute = (commands: any[], toggledCommands?: any[]) => {
     if(button.classToggle){
@@ -178,6 +196,15 @@ export type CustomButtonSet =
   
 export const Set = ({buttonGroup, executeAll, theme, themeProp}: CustomButtonSet) => {
 
+  console.log("|---> (re)rendering button set");
+
+  useEffect(() => {
+    console.log("---------- button set mounted ----------");
+    return () => {
+      console.log("---------- button set unmounted ----------");
+    }
+  }, []);
+
   const execute = (buttonRef: React.RefObject<HTMLButtonElement>, commands: any[]) => {
     // Do things here that depend on which button is clicked using buttonRef.current
     if(commands)
@@ -207,6 +234,15 @@ export type CustomMenu =
 }
   
 export const Menu = ({menu, executeAll, theme, themeProp}: CustomMenu) => {
+
+  console.log("|---> (re)rendering menu bar");
+
+  useEffect(() => {
+    console.log("---------- menu bar mounted ----------");
+    return () => {
+      console.log("---------- menu bar mounted ----------");
+    }
+  }, []);
 
   const execute = (buttonRef: React.RefObject<HTMLButtonElement>, commands: any[]) => {
     // Do things here that depend on which button is clicked using buttonRef.current

@@ -68,14 +68,11 @@ const defaultProps = {
 }
 
 const GlobalCSS = createGlobalStyle<{isDisabled?: boolean, inject: string}>`
-  html {
-    opacity: ${props => props.isDisabled? "0.5": "1"};
-    cursor: ${props => props.isDisabled? "not-allowed": "auto"};
-    pointer-events: ${props => props.isDisabled? "none": "auto"};
-  }
   body {
     margin: 0;
     padding: 0;
+    opacity: ${props => props.isDisabled? "0.5": "1"};
+    pointer-events: ${props => props.isDisabled? "none": "auto"};
   }
   ${props => props.inject}
 `
@@ -150,9 +147,13 @@ const CodeEditor = ({ args, width, disabled, theme }: CodeEditorProps) => {
   const [snippetAddRemove, setSnippetAddRemove] = useState({[args['lang']] : [createSnippets(args["snippets"][0]), createSnippets(args["snippets"][1])]});
   const [keybindingAddRemove, setKeybindingAddRemove] = useState(args['keybindings']);
 
+  console.log("...........................................");
+  console.log("|-> (re)rendering component: CodeEditor");
 
   useEffect(() => {
+    console.log("=========== CodeEditor Mounted ===========");
     return () => {
+      console.log("=========== CodeEditor Unmounted ===========");
       if (timeoutId) {
         clearTimeout(timeoutId);
       }
@@ -463,6 +464,38 @@ const CodeEditor = ({ args, width, disabled, theme }: CodeEditorProps) => {
     setCode(args['code']);
   }
 
+  // /**
+  // * This method for copying to clipboard uses the 
+  // * {@link https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API Clipboard API}
+  // * which makes use of the asynchronous clipboard read and write methods 
+  // * and requires that the user grant the web site or app permission to
+  // * access the clipboard. The latter can be an issue for streamlit because
+  // * it uses http instead of https. 
+  // * */
+  // const copyToClipboard = async (): Promise<void> => {
+  //   try {
+  //     await navigator.clipboard.writeText(code);
+  //   } catch (err) {
+  //     console.warn('Failed to copy securely -> reverting to unsecure copy');
+  //     unsecureCopyToClipboard();
+  //   }
+  // }
+
+  // /**
+  // * This method for copying to clipboard uses .execCommand method
+  // * which is depreciated but still supported by most browsers. This
+  // * is the same approach for copying that Streamlit's built in CodeBlock
+  // * component uses.
+  // **/
+  // const unsecureCopyToClipboard = () => {
+  //   const textField = document.createElement('textarea');
+  //   textField.value = aceEditor.current ? aceEditor.current.editor.getValue() : code;
+  //   document.body.appendChild(textField);
+  //   textField.select();
+  //   document.execCommand('copy');
+  //   textField.remove();
+  // }
+
   const unsecureCopyTextToClipboard = (text: string) => {
     const textField = document.createElement('textarea');
     textField.value = text;
@@ -518,11 +551,7 @@ const CodeEditor = ({ args, width, disabled, theme }: CodeEditorProps) => {
   const snippets = JSON.stringify(snippetAddRemove);
 
   /**
-   * This section contains the main sub-components (child components). These components are wrapped in useMemos
-   * in order to prevent unnecessary re-rendering of the components. This is listed as one of its use cases in the
-   * React docs ({@link https://beta.reactjs.org/reference/react/useMemo#skipping-re-rendering-of-components Skipping re-rendering of components})
-   *
-   * This component is the editor component that is rendered. It is only re-rendered when
+   * This is the editor component that is rendered. It is memoized so that it is only re-rendered when
    * certain properties change. This is important because we should account for the possibility that the editor 
    * is being used at any given moment. Unnecessary and frequent re-rendering of the editor (for outside reasons
    * especially) can impact user experience and responsiveness.

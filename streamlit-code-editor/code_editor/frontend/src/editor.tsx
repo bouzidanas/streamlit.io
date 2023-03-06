@@ -35,6 +35,15 @@ export type EditorProps = {
   }
   
 export const Editor = ({ lang, theme, shortcuts, props, snippetString, commands, keybindingString, editorRef, code, onChange }: EditorProps ) => {
+
+  console.log("|---> (re)rendering editor");
+  
+  useEffect(() => {
+    console.log("---------- editor mounted ----------");
+    return () => {
+      console.log("editor unmounted");
+    }
+  }, []);
     
   useEffect(() => {
     if(editorRef.current){
