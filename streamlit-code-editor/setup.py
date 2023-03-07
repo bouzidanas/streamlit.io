@@ -1,7 +1,7 @@
 import setuptools
 
 setuptools.setup(
-    name="streamlit_code_editor",
+    name="streamlit-code-editor",
     version="0.0.2",
     author="Anas Bouzid",
     author_email="anasbouzid@gmail.com",
