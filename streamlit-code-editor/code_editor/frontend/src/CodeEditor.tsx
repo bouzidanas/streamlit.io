@@ -5,7 +5,7 @@ import {
   Theme,
 } from "streamlit-component-lib"
 import styled, { createGlobalStyle } from "styled-components/macro"
-import React, { useState, useRef, useEffect, useMemo } from "react"
+import { useState, useRef, useEffect, useMemo } from "react"
 import AceEditor from "react-ace";
 import ace from "ace-builds";
 import { Editor } from './editor';
