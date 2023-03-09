@@ -52,7 +52,7 @@ const defaultProps = {
   enableLiveAutocompletion: true,
   enableSnippets: true,
   focus: false,
-  fontSize: 16,
+  fontSize: 14,
   highlightActiveLine: true,
   navigateToFileEnd: true,
   placeholder: null,
@@ -265,8 +265,20 @@ const CodeEditor = ({ args, width, disabled, theme }: CodeEditorProps) => {
     {
       name: 'infoMessage',
       description: "Display message in info bar",
-      exec: (editor: ace.Ace.Editor, args: {text: string, timeout?: number, classToggle?: string} ) => {
-        if(infoTextRef.current){
+      exec: (editor: ace.Ace.Editor, args: {text: string, timeout?: number, classToggle?: string, targetQueryString?: string} ) => {
+        if(args.targetQueryString){
+          const target = document.querySelector(args.targetQueryString) as HTMLElement;
+          if(target){
+            target.innerText = args.text;
+            target.classList.add(args.classToggle || "")
+            if(args.timeout){
+              timeoutId = setTimeout(() => {
+                target.classList.remove(args.classToggle || "");
+              }, args.timeout);
+            }
+          }
+        }
+        else if(infoTextRef.current){
           infoTextRef.current.innerText = args.text;
           infoTextRef.current.classList.add(args.classToggle || "");
           if(args.timeout){

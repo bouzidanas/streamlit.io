@@ -163,7 +163,7 @@ export const Button = ({button, theme, themeProp, executeAll}: CustomButtonType)
       theme={theme}
       onClick={() => execute(button.commands ?? [], button.toggledCommands)}>
         {(button.hasText && button.name)? <StyledSpan >{button.name}</StyledSpan> : ``}
-        {button.feather? creatIcon(button.feather as iconKey || "Copy", button.iconSize) : ""}
+        {button.feather? creatIcon(button.feather as iconKey || "X", button.iconSize) : ""}
     </StyledButton>
   )
 }

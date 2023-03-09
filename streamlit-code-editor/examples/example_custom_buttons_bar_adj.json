@@ -3,8 +3,16 @@
     "feather": "Copy",
     "hasText": true,
     "alwaysOn": true,
-    "commands": ["copyAll"],
-    "style": {"top": "0.46rem", "right": "0.4rem"}
+    "commands": ["copyAll", 
+                 ["infoMessage", 
+                  {
+                   "text":"Copied to clipboard!",
+                   "timeout": 2500, 
+                   "classToggle": "show"
+                  }
+                 ]
+                ],
+    "style": {"top": "-0.25rem", "right": "0.4rem"}
   },{
     "name": "Shortcuts",
     "feather": "Type",
