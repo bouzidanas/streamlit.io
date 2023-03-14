@@ -11,21 +11,25 @@ Install [streamlit-code-editor](https://pypi.org/project/streamlit-code-editor/)
 ```
 python -m pip install streamlit_code_editor
 ```
+replacing `python` with the correct version of python for your setup (e.g. `python3` or `python3.8`). Or if you are certain the correct version of python will be used to run pip, you can install with just:
+```
+pip install streamlit_code_editor
+```
+Alternatively, you can download the source from the [download page](https://pypi.org/project/streamlit-code-editor/#files) and after unzipping, install with:
+```
+python setup.py install
+```
+(for the above command to work, make sure you are in the same directory as 'setup.py' in the unzipped folder).
 
-## Setup
-Clone this repo to your desktop and run `npm install` to install all the dependencies.
+## Adding a Code Editor to Streamlit app
+After importing the module, you can call the `code_editor` function with just a string:
+```import streamlit as st
+from code_editor import code_editor
 
-You might want to look into `config.json` to make change the port you want to use and set up a SSL certificate.
-
----
-
-## Usage
-After you clone this repo to your desktop, go to its root directory and run `npm install` to install its dependencies.
-
-Once the dependencies are installed, you can run  `npm start` to start the application. You will then be able to access it at localhost:3000
-
-To give yourself administrator permissions on the chat, you will have to type `/role [your-name]` in the app console.
-
+response_dict = code_editor(your_code_string)```
+Without specifying a language, the editor will default to `python`. You can also specify a language with the `lang` argument:
+```# The default value for the lang argument is "python"\nresponse_dict = code_editor(your_code_string, lang="python")```
+ By default, each code editor is styled like streamlit's code component. We will go over how to customize the styling in a later section.
 ---
 
 ## License
