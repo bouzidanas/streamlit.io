@@ -26,9 +26,12 @@ After importing the module, you can call the `code_editor` function with just a 
 ```import streamlit as st
 from code_editor import code_editor
 
-response_dict = code_editor(your_code_string)```
+response_dict = code_editor(your_code_string)
+```
 Without specifying a language, the editor will default to `python`. You can also specify a language with the `lang` argument:
-```# The default value for the lang argument is "python"\nresponse_dict = code_editor(your_code_string, lang="python")```
+```
+# The default value for the lang argument is "python"\nresponse_dict = code_editor(your_code_string, lang="python")
+```
  By default, each code editor is styled like streamlit's code component. We will go over how to customize the styling in a later section.
 ---
 
