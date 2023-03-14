@@ -38,6 +38,7 @@ By default, each code editor is styled like streamlit's code component. We will 
 
 ## Basic customization
 In this section, we will go over the `height`, `theme`, `shortcuts`, and `focus` properties.
+
 ### Height
 The height of the code editor can be set with the `height` argument. The height argument takes one of three types of values: a string, an integer number, or an list of two integers.
 ```
@@ -53,11 +54,14 @@ response_dict = code_editor(your_code_string, height=[10, 20])
 ```
 
 If a string is given, it will be used to set the css height property of the editor part of the code editor component. This means that height can be set with strings like '500px' or '20rem' for example.
+
 If instead, `height` is set with an integer, it will be used to set the `maxLines` property of the editor. This means that the height will be adjusted to fit the number of lines in the code string upto but not exceeding the integer value given. It might be that you always want the editor to fit the code so that no scrolling is needed. In this case, you can set `height` to a large integer value like 1000.
+
 As you might have guessed, the inner editor also has a `minLines` property. It is set to 1 by default. If you want to set the minimum number of lines, you can set `height` to an list of two integers. The first integer will be used to set `minLines` and the second integer will be used to set `maxLines`.
 
 ### Theme
 As mentioned earlier, the code editor component contains an inner editor component. This inner editor is an [Ace Editor](https://ace.c9.io/) which comes with 20 built in themes. These themes share certain characteristics in appearance that I feel clash with streamlit's modern look. For better integration with streamlit's look, I have created a two custom Ace Editor themes called 'streamlit-dark' and 'streamlit-light'. These two themes can be used as a starting point for further customization of appearence as we will see in later sections.
+
 By default, the code editor chooses one of the two custom themes according to the `base` attribute of streamlit's theme section of config options (see [Advanced features - Theming](https://docs.streamlit.io/library/advanced-features/theming) for more details). For more control over which of the two is chosen, you can use the `theme` argument of Code Editor. The `theme` argument takes one of four string values: 'default', 'dark', 'light', 'contrast'.
 
 ```
@@ -85,10 +89,11 @@ response_dict = code_editor(your_code_string, shortcuts="vim")
 There maybe times when you want to focus the editor when it loads (to start or continue editing after script is run/re-run without having to click into the editor). You can do this by setting the `focus` argument to `True`. The default value for `focus` is `False`.
 
 ```
-# set focus to True\nresponse_dict = code_editor(your_code_string, focus=True)
+# set focus to True
+response_dict = code_editor(your_code_string, focus=True)
 ```
 
-There is one very important detail to note about the `focus` feature. Focus will be given to the editor only when the value of `focus` changes from `False` to `True`. This means that if you set `focus` to `True` in the first run of the script, it will not be given focus in subsequent runs. To give focus to the editor in subsequent runs, you will have to set `focus` to `False` and then `True` again. This is to avoid giving focus to the editor when it is not intended because streamlit script re-runs are not the only cause of component re-renders (resizing the browser window, for example, can also cause components to re-render) and each time the editor re-renders, it will respond to the value of the `focus` argument.
+There is one very important detail to note about the `focus` feature. Focus will be given to the editor only when the value of `focus` changes from `False` to `True`. This means that if you set `focus` to `True` in the first run of the script, it will not be given focus in subsequent runs. To give focus to the editor in subsequent runs, you will have to set `focus` to `False` and then `True` again. 
 
 ---
 
