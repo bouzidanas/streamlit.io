@@ -52,6 +52,10 @@ table.doc .italic {
     font-style: italic;
 }
 
+table.doc ul {
+    margin-left: 0.5rem;
+}
+
 table.doc .code {
     font-family: Source Code Pro,ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace;
 }
@@ -120,7 +124,7 @@ table_html_string = '''<table class="full-width doc">
                 <div>
                     <p class="">
                         <span class="bold">height</span>
-                        <span class="italic code">(str or int or list/array of two ints)</span>
+                        <span class="italic code">(str or int or list of two ints)</span>
                     </p>
                 </div> 
             </td>
@@ -262,7 +266,21 @@ table_html_string = '''<table class="full-width doc">
             </td>
             <td >
                 <div>
-                    <p>Add info bar. Default is empty dictionary: {}</p>
+                    <p>Add info bar. Default is empty dictionary: {}. Attributes include: 
+                        <ul>
+                            <li><span class="lbold">name</span> <span class="italic code">(str)</span>: name of the info bar</li>
+                            <li><span class="lbold">css</span> <span class="italic code">(str)</span>: css to be applied to the info bar</li>
+                            <li><span class="lbold">style</span> <span class="italic code">(dict)</span>: style properties to be applied to the info bar</li>
+                            <li><span class="lbold">info</span> <span class="italic code">(list)</span>: items/elements to add to the info bar. item dict attributes include
+                                <ul>
+                                    <li><span class="lbold">name</span> <span class="italic code">(str)</span>: name of the item and text to be displayed</li>
+                                    <li><span class="lbold">class</span> <span class="italic code">(str)</span>: class name to be added to the item</li>
+                                    <li><span class="lbold">style</span> <span class="italic code">(str)</span>: style properties to be applied to the item</li>
+                                    <li><span class="lbold">theme</span> <span class="italic code">(str)</span>: theme for item to use</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </p>
                 </div>
             </td>
         </tr>
@@ -279,9 +297,9 @@ table_html_string = '''<table class="full-width doc">
                 <div>
                     <p>Argument that sets component properties. Default is empty dictionary, {}. Attributes include:
                         <ul> 
-                            <li><span class="lbold">style</span> <span class="italic code">(dict)</span>: CSS style properties</li>
-                            <li><span class="lbold">css</span> <span class="italic code">(str)</span>: CSS string</li>
-                            <li><span class="lbold">globalCSS</span> <span class="italic code">(str)</span>: Global CSS string</li>
+                            <li><span class="lbold">style</span> <span class="italic code">(dict)</span>: style properties</li>
+                            <li><span class="lbold">css</span> <span class="italic code">(str)</span>: CSS to apply to Code Editor component. </li>
+                            <li><span class="lbold">globalCSS</span> <span class="italic code">(str)</span>: global CSS that applies to document containing the Code Editor component</li>
                         </ul>
                     </p>
                 </div>
@@ -292,7 +310,7 @@ table_html_string = '''<table class="full-width doc">
                 <div>
                     <p class="">
                         <span class="bold">props</span>
-                        <span class="italic code">(dicty)</span>
+                        <span class="italic code">(dict)</span>
                     </p>
                 </div> 
             </td>

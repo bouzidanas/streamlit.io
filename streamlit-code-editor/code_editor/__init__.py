@@ -146,8 +146,9 @@ for i in sys.argv[1:]:
     if 'focus' not in st.session_state:
         st.session_state['focus'] = False
 
-    code_back = code_editor(code_input, lang="python", focus=st.session_state['focus'], theme="contrast", snippets=[[{ "name": 'build', "code": 'console.log("build")' },{ "name": 'destroy', "code": 'console.log("destroy")' }],""], buttons=customButtons["buttons"], info=infoBar,component_props=comp_props, props={"scrollMargin": [31,15,0,0]}, key="editor2")
+    code_back = code_editor(code_input, lang="python", height=5, focus=st.session_state['focus'], snippets=[[{ "name": 'build', "code": 'console.log("build")' },{ "name": 'destroy', "code": 'console.log("destroy")' }],""], buttons=customButtons["buttons"], info=infoBar,component_props=comp_props, props={"scrollMargin": [31,15,0,0]}, options={"wrap": False}, key="editor2")
     if code_back['type'] == "submit" and len(code_back['text']) != 0:
         st.write("TYPE: ", code_back['type'])
         st.code(code_back['text'], language=code_back['lang'])
 
+    st.text_area("Text area", height=5)
