@@ -37,7 +37,7 @@ response_dict = code_editor(your_code_string, lang="javascript")
 By default, each code editor is styled like streamlit's code component. We will go over how to customize the styling in a later section.
 
 ## Basic customization
-In this section, we will go over the `height`, `theme`, `shortcuts`, and `focus` properties.
+IThis section covers the `height`, `theme`, `shortcuts`, and `focus` arguments of the `code_editor` function.
 
 ### Height
 The height of the code editor can be set with the `height` argument. The height argument takes one of three types of values: a string, an integer number, or an list of two integers.
