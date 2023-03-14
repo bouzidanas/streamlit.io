@@ -1,4 +1,4 @@
-streamlit code editor  [![PYPI](https://img.shields.io/pypi/v/streamlit-code-editor)](https://pypi.org/project/streamlit-code-editor/#history) [![Live Demo]()](https://igorantun.com/chat) 
+streamlit code editor  [![PYPI](https://img.shields.io/pypi/v/streamlit-code-editor)](https://pypi.org/project/streamlit-code-editor/#history)
 ============
 
 A code editor component for streamlit.io apps, built on top of react-ace, with custom themes and customizable interface elements for better integration with other components.
@@ -6,13 +6,11 @@ A code editor component for streamlit.io apps, built on top of react-ace, with c
 
 ---
 
-## Features
-- item 1
-
-![User Features](http://i.imgur.com/WbF1fi2.png)
-
-![Admin Features](http://i.imgur.com/xQFaadt.png)
-
+## Installation
+Install [streamlit-code-editor](https://pypi.org/project/streamlit-code-editor/) with pip:
+```
+python -m pip install streamlit_code_editor
+```
 
 ## Setup
 Clone this repo to your desktop and run `npm install` to install all the dependencies.
