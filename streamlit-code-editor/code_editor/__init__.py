@@ -69,7 +69,7 @@ def code_editor(code, lang='python', theme="default", shortcuts="vscode", height
     #
     # "default" is a special argument that specifies the initial return
     # value of the component before the user has interacted with it.
-    component_value = _component_func(code=code, lang=lang, theme=theme, key=key, height=height, focus=focus, shortcuts=shortcuts, snippets=snippets, keybindings=keybindings, buttons=buttons, options=options, props=props, editor_props=editor_props, component_props=component_props, menu=menu, info=info, default={"type": "", "code": ""})
+    component_value = _component_func(code=code, lang=lang, theme=theme, key=key, height=height, focus=focus, shortcuts=shortcuts, snippets=snippets, keybindings=keybindings, buttons=buttons, options=options, props=props, editor_props=editor_props, component_props=component_props, menu=menu, info=info, default={"type": "", "text": "", "lang": ""})
 
     # We could modify the value returned from the component if we wanted.
     # There's no need to do this in our simple example - but it's an option.
@@ -146,8 +146,9 @@ for i in sys.argv[1:]:
     if 'focus' not in st.session_state:
         st.session_state['focus'] = False
 
-    code_back = code_editor(code_input, lang="python", focus=st.session_state['focus'], theme="contrast", snippets=[[{ "name": 'build', "code": 'console.log("build")' },{ "name": 'destroy', "code": 'console.log("destroy")' }],""], buttons=customButtons["buttons"], info=infoBar,component_props=comp_props, props={"scrollMargin": [31,15,0,0]}, key="editor2")
+    code_back = code_editor(code_input, lang="python", height=5, focus=st.session_state['focus'], snippets=[[{ "name": 'build', "code": 'console.log("build")' },{ "name": 'destroy', "code": 'console.log("destroy")' }],""], buttons=customButtons["buttons"], info=infoBar,component_props=comp_props, props={"scrollMargin": [31,15,0,0]}, options={"wrap": False}, key="editor2")
     if code_back['type'] == "submit" and len(code_back['text']) != 0:
         st.write("TYPE: ", code_back['type'])
         st.code(code_back['text'], language=code_back['lang'])
 
+    st.text_area("Text area", height=5)
