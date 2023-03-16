@@ -50,13 +50,11 @@ response_dict = code_editor(your_code_string, height=[10, 20])
 
 If a string is given, it will be used to set the css height property of the editor part of the code editor component. This means that height can be set with strings like '500px' or '20rem' for example.
 
-If instead, `height` is set with an integer, it will be used to set the `maxLines` property of the editor. This means that the height will be adjusted to fit the number of lines in the code string upto but not exceeding the integer value given. It might be that you always want the editor to fit the code so that no scrolling is needed. In this case, you can set `height` to a large integer value like 1000.
+If instead, `height` is set with an integer, it will be used to set the `maxLines` property of the editor. This means that the height will be adjusted to fit the number of lines in the code string upto but not exceeding the integer value given.
 
 As you might have guessed, the inner editor also has a `minLines` property. It is set to 1 by default. If you want to set the minimum number of lines, you can set `height` to an list of two integers. The first integer will be used to set `minLines` and the second integer will be used to set `maxLines`.
 
 ### Theme
-The code editor component in Streamlit contains an inner editor component which is an [Ace Editor](https://ace.c9.io/) that comes with 20 built-in themes. To better integrate with Streamlit's look, two additional custom Ace Editor themes called 'streamlit-dark' and 'streamlit-light' have been created. These two themes can be used as a starting point for further customization of appearance as we will see in later sections.
-
 By default, the code editor chooses one of the two custom themes according to the `base` attribute of Streamlit's theme section of config options (see [Advanced features - Theming](https://docs.streamlit.io/library/advanced-features/theming) for more details). To change this behavior, use the `theme` argument of the `code_editor` function. The `theme` argument takes one of four string values: 'default', 'dark', 'light', 'contrast'.
 
 ```python
@@ -82,7 +80,7 @@ response_dict = code_editor(your_code_string, shortcuts="vim")
 ```
 
 ### Focus
-There maybe times when you want to focus the editor when it loads (to start or continue editing after script is run/re-run without having to click into the editor). You can do this by setting the `focus` argument to `True`. The default value for `focus` is `False`.
+You can focus the editor when it loads by setting the `focus` argument to `True`. The default value for `focus` is `False`.
 
 ```
 # set focus to True
@@ -90,7 +88,3 @@ response_dict = code_editor(your_code_string, focus=True)
 ```
 
 There is one very important detail to note about the `focus` feature. Focus will be given to the editor only when the value of `focus` changes from `False` to `True`. This means that if you set `focus` to `True` in the first run of the script, it will not be given focus in subsequent runs. To give focus to the editor in subsequent runs, you will have to set `focus` to `False` and then `True` again. 
-
----
-
-## License
