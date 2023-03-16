@@ -1,5 +1,4 @@
 streamlit code editor  [![PYPI](https://img.shields.io/pypi/v/streamlit-code-editor)](https://pypi.org/project/streamlit-code-editor/#history)
-
 ============
 
 A code editor component for streamlit.io apps, built on top of react-ace, with custom themes and customizable interface elements for better integration with other components.
