@@ -18,10 +18,9 @@ python setup.py install
 ```
 (for the above command to work, make sure you are in the same directory as 'setup.py' in the unzipped folder).
 
-## Adding a Code Editor to Streamlit app
-After importing the module, you can call the `code_editor` function with just a string:
+## Usage
+To add a Code Editor to Streamlit python app, import `code_editor` and then call the `code_editor` function with the code you want to edit (as a string):
 ```
-import streamlit as st
 from code_editor import code_editor
 
 response_dict = code_editor(your_code_string)
@@ -32,7 +31,6 @@ Without specifying a language, the editor will default to `python`. You can also
 response_dict = code_editor(your_code_string, lang="javascript")
 ```
 By default, each code editor is styled like streamlit's code component. We will go over how to customize the styling in a later section.
-
 ## Basic customization
 IThis section covers the `height`, `theme`, `shortcuts`, and `focus` arguments of the `code_editor` function.
 
@@ -57,19 +55,20 @@ If instead, `height` is set with an integer, it will be used to set the `maxLine
 As you might have guessed, the inner editor also has a `minLines` property. It is set to 1 by default. If you want to set the minimum number of lines, you can set `height` to an list of two integers. The first integer will be used to set `minLines` and the second integer will be used to set `maxLines`.
 
 ### Theme
-As mentioned earlier, the code editor component contains an inner editor component. This inner editor is an [Ace Editor](https://ace.c9.io/) which comes with 20 built in themes. These themes share certain characteristics in appearance that I feel clash with streamlit's modern look. For better integration with streamlit's look, I have created a two custom Ace Editor themes called 'streamlit-dark' and 'streamlit-light'. These two themes can be used as a starting point for further customization of appearence as we will see in later sections.
+The code editor component in Streamlit contains an inner editor component which is an [Ace Editor](https://ace.c9.io/) that comes with 20 built-in themes. To better integrate with Streamlit's look, two additional custom Ace Editor themes called 'streamlit-dark' and 'streamlit-light' have been created. These two themes can be used as a starting point for further customization of appearance as we will see in later sections.
 
-By default, the code editor chooses one of the two custom themes according to the `base` attribute of streamlit's theme section of config options (see [Advanced features - Theming](https://docs.streamlit.io/library/advanced-features/theming) for more details). For more control over which of the two is chosen, you can use the `theme` argument of Code Editor. The `theme` argument takes one of four string values: 'default', 'dark', 'light', 'contrast'.
+By default, the code editor chooses one of the two custom themes according to the `base` attribute of Streamlit's theme section of config options (see [Advanced features - Theming](https://docs.streamlit.io/library/advanced-features/theming) for more details). To change this behavior, use the `theme` argument of the `code_editor` function. The `theme` argument takes one of four string values: 'default', 'dark', 'light', 'contrast'.
 
-```
+```python
 # set theme to 'streamlit-dark' if base is 'dark' and 
 # 'streamlit-light' if base is 'light'
 response_dict = code_editor(your_code_string, theme="default")
 ```
 
-```
+```python
 # set theme to 'streamlit-light' if base is 'dark' and 
-# 'streamlit-dark' if base is 'light'\nresponse_dict = code_editor(your_code_string, theme="contrast"
+# 'streamlit-dark' if base is 'light'
+response_dict = code_editor(your_code_string, theme="contrast")
 ```
 
 Values 'dark' and 'light' will select 'streamlit-dark' and 'streamlit-light' respectively. The 'default' value will choose the 'streamlit-light' theme if `base="light"` and 'streamlit-dark' if `base="dark"`. Finally, passing in 'contrast' will do the exact opposite of 'default'.
