@@ -1,4 +1,5 @@
 streamlit code editor  [![PYPI](https://img.shields.io/pypi/v/streamlit-code-editor)](https://pypi.org/project/streamlit-code-editor/#history)
+
 ============
 
 A code editor component for streamlit.io apps, built on top of react-ace, with custom themes and customizable interface elements for better integration with other components.
@@ -45,11 +46,11 @@ The height of the code editor can be set with the `height` argument. The height 
 # set height of editor to 500 pixels
 response_dict = code_editor(your_code_string, height="500px")
 
-# set height to adjust to fit up to 20 lines (and scroll for more)
+# set height to adjust to fit up to 20 lines (and scroll if more)
 response_dict = code_editor(your_code_string, height=20)
 
 # set height to display a minimum of 10 lines and a maximum of 20 lines
-# (and scroll for more)
+# (and scroll if more)
 response_dict = code_editor(your_code_string, height=[10, 20])
 ```
 
