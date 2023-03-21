@@ -47,7 +47,7 @@ response_dict = code_editor(your_code_string, height=20)
 response_dict = code_editor(your_code_string, height=[10, 20])
 ```
 
-If a string is given, it will be used to set the css height property of the editor part of the code editor component. This means that height can be set with strings like '500px' or '20rem' for example.
+If a string is given, it will be used to set the css height property of the editable part of the code editor. This means that height can be set with strings like '500px' or '20rem' for example.
 
 If instead, `height` is set with an integer, it will be used to set the `maxLines` property of the editor. This means that the height will be adjusted to fit the number of lines in the code string upto but not exceeding the integer value given.
 
