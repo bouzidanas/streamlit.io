@@ -71,7 +71,7 @@ response_dict = code_editor(your_code_string, theme="contrast")
 Values 'dark' and 'light' will select 'streamlit-dark' and 'streamlit-light' respectively. The 'default' value will choose the 'streamlit-light' theme if `base="light"` and 'streamlit-dark' if `base="dark"`. Finally, passing in 'contrast' will do the exact opposite of 'default'.
 
 ### Shortcuts
-Ace Editor comes with four keyboard handlers: 'vim', 'emacs', 'vscode', and 'sublime'. The keyboard handler dictates what keyboard keys and key combinations will do by default. You can select the handler to start the editor with using the `shortcuts` argument. The `shortcuts` argument takes one of four string values: 'vim', 'emacs', 'vscode', 'sublime'. The default value for `shortcuts` is 'vscode'.
+The built-in Ace Editor comes with four keyboard handlers: 'vim', 'emacs', 'vscode', and 'sublime'. The keyboard handler dictates what keyboard keys and key combinations will do by default. You can select the handler to start the editor with using the `shortcuts` argument. The `shortcuts` argument takes one of four string values: 'vim', 'emacs', 'vscode', 'sublime'. The default value for `shortcuts` is 'vscode'.
 
 ```
 # set keyboard handler to 'vim'
