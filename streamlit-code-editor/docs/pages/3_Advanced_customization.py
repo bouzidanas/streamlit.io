@@ -77,15 +77,15 @@ with col1:
     st.markdown("""Code Editor and the components inside (Ace Editor, Info/Menu bars, and buttons) all have a way to set their `style` property. With the exception of Ace Editor and outer containers (like Code Editor), this is done via the `style` attribute of the corresponding dictionary. For example, the `style` attribute of the info bar dictionary is used to set the `style` property of the info bar component. In contrast, Ace Editor's `style` property is set via the `style` attribute in the dictionary you give to the `props` argument of the `code_editor` function. The style attribute corresponding to the Code Editor (outermost container labeled "Code Editor" in the diagram) should be in the dictionary you give to the function's `component_props` argument/parameter""")
 
     code_setting_style = """# style dict for Ace Editor
-    ace_style = {"borderRadius": "0px 0px 8px 8px"}
+ace_style = {"borderRadius": "0px 0px 8px 8px"}
 
-    # style dict for Code Editor
-    code_style = {"width": "100%"}
+# style dict for Code Editor
+code_style = {"width": "100%"}
 
-    # set style of info bar dict from previous example
-    info_bar["style"] = {**info_bar["style"], "order": "1", "height": "2.0rem", "padding": "0rem 0.6rem", "padding-bottom": "0.2rem"}
-    response_dict = code_editor(your_code_string, height=20, info=info_bar, props={"style": ace_style}, component_props={"style": code_style})
-    """
+# set style of info bar dict from previous example
+info_bar["style"] = {**info_bar["style"], "order": "1", "height": "2.0rem", "padding": "0rem 0.6rem", "padding-bottom": "0.2rem"}
+response_dict = code_editor(your_code_string, height=20, info=info_bar, props={"style": ace_style}, component_props={"style": code_style})
+"""
     info_bar["style"] = {**info_bar["style"], "order": "1", "height": "2.0rem", "padding": "0rem 0.6rem", "padding-bottom": "0.2rem"}
     response_info_ex_fixed = code_editor(code_setting_style, height=20, info=info_bar, props={"style": {"borderRadius": "0px 0px 8px 8px"}})
     st.markdown("What if you want to not only style the component but also the elements inside of it? This is where `css` attributes come into the picture. You can pass in CSS to be applied to the component and its children. The way this CSS string is added to the already existing CSS is by prepending the automatically generated class name (given to the component) to the selectors of all rule sets in the string and any property-value pairs that are not in a rule set are added to a general rule set with the generated class name as the selector. In the following example, a CSS string is passed to Code Editor's `css` property: ")

@@ -70,25 +70,25 @@ with col1:
     custom_button_code_show ='''[{"name": "Copy", "hasText": True}]'''
     custom_button_code_show_always ='''[{"name": "Copy", "hasText": True, "alwaysOn": True,}]'''
     custom_button_code_show_always_right ='''[{
-      "name": "Copy",
-      "hasText": True,
-      "alwaysOn": True,
-      "style": {"top": "0.46rem", "right": "0.4rem"}
-    }]'''
+  "name": "Copy",
+  "hasText": True,
+  "alwaysOn": True,
+  "style": {"top": "0.46rem", "right": "0.4rem"}
+}]'''
     btn_show_always_right_icon ='''[{
-      "name": "Copy",
-      "feather": "Copy",
-      "alwaysOn": True,
-      "style": {"top": "0.46rem", "right": "0.4rem"}
-    }]'''
+  "name": "Copy",
+  "feather": "Copy",
+  "alwaysOn": True,
+  "style": {"top": "0.46rem", "right": "0.4rem"}
+}]'''
 
     btn_show_always_right_icon_cmd ='''[{
-      "name": "Copy",
-      "feather": "Copy",
-      "alwaysOn": True,
-      "commands": ["copyAll"],
-      "style": {"top": "0.46rem", "right": "0.4rem"}
-    }]'''
+  "name": "Copy",
+  "feather": "Copy",
+  "alwaysOn": True,
+  "commands": ["copyAll"],
+  "style": {"top": "0.46rem", "right": "0.4rem"}
+}]'''
 
     response_custom_button = code_editor(custom_button_code, lang="python", buttons=[{"name": "Copy"}])
     st.markdown("Although you cant see it yet, a button has been added. The only required attribute to add a button is the `name` attribute containing a string. The `name` attribute should contain the text that will be displayed on the button. The name attribute is also used in the id of the HTML button element so make sure it is unique. You can put any assortment of characters in the name attribute including spaces.")
@@ -100,7 +100,7 @@ with col1:
     response_btn_show_always_right = code_editor(custom_button_code_show_always_right, lang="python", buttons=[{"name": "Copy", "hasText": True, "alwaysOn": True, "style": {"top": "0.46rem", "right": "0.4rem"}}])
     st.markdown("What if, instead of text, you want the button to have an icon like Streamlit's code component's copy button? Code Editor allows you add any [Feather](https://feathericons.com/) icon to a custom button. To do so, set the `feather` attribute to the name of the icon you want to use. Make sure that the name of the icon is formatted: the first letter of each word separated with a dash is capitalized and the dash is removed. For example, 'alert-circle' becomes 'AlertCircle'. If we just want to show the icon, we can remove the text by removing the `hasText` attribute or setting it to `False`.")
     response_btn_show_always_right_icon = code_editor(btn_show_always_right_icon, lang="python", buttons=[{"name": "Copy", "feather": "Copy", "alwaysOn": True, "style": {"top": "0.46rem", "right": "0.4rem"}}])
-    st.markdown("There is still one major issue with the button. It does not do anything. To make the button do something, we have to give it a list of commands we want Code Editor to execute when the button is clicked. We can do this by giving the `commands` attribute a list of the names of the commands we want executed. You can find a list of the built-in commands [here]().")
+    st.markdown("There is still one major issue with the button. It does not do anything. To make the button do something, we have to give it a list of commands we want Code Editor to execute when the button is clicked. We can do this by giving the `commands` attribute a list of the names of the commands we want executed. You can find a list of the built-in commands [here](https://github.com/bouzidanas/streamlit.io/blob/dev/streamlit-code-editor/code_editor/frontend/docs/commands.js).")
     response_btn_show_always_right_icon_cmd = code_editor(btn_show_always_right_icon_cmd, lang="python", buttons=[{"name": "Copy", "feather": "Copy", "alwaysOn": True, "commands": ["copyAll"], "style": {"top": "0.46rem", "right": "0.4rem"}}])
     st.markdown("The 'copyAll' command simply copies the entire contents of the editor to the clipboard.")
 
@@ -108,69 +108,69 @@ with col1:
     st.markdown("Among the commands (that can be given to be executed when a button is clicked) are special commands called 'response commands' which call Streamlit's `setComponentValue` function to return a dictionary to the script. For example, the 'submit' command sends the following dictionary to the streamlit script as the return value of the `code_editor` function (corresponding to the Code Editor that executed the command):")
 
     btn_submit_return = '''{
-      "type": "submit",
-      "lang": "python",
-      "text": "the code in the editor",
-    }'''
+  "type": "submit",
+  "lang": "python",
+  "text": "the code in the editor",
+}'''
     st.code(btn_submit_return, language="python")
 
     st.markdown("#### Demo")
     st.markdown("The following is an example dictionary that adds multiple buttons, some that execute single commands, some that execute response commands and some that execute multiple commands. The buttons are also positioned differently and have different features turned on or off.")
 
     btns_demo = '''[
-     {
-       "name": "Copy",
-       "feather": "Copy",
-       "hasText": True,
-       "alwaysOn": True,
-       "commands": ["copyAll"],
-       "style": {"top": "0.46rem", "right": "0.4rem"}
-     },
-     {
-       "name": "Shortcuts",
-       "feather": "Type",
-       "class": "shortcuts-button",
-       "hasText": True,
-       "commands": ["toggleKeyboardShortcuts"],
-       "style": {"bottom": "calc(50% + 1.75rem)", "right": "0.4rem"}
-     },
-     {
-       "name": "Collapse",
-       "feather": "Minimize2",
-       "hasText": True,
-       "commands": ["selectall",
-                    "toggleSplitSelectionIntoLines",
-                    "gotolinestart",
-                    "gotolinestart",
-                    "backspace"],
-       "style": {"bottom": "calc(50% - 1.25rem)", "right": "0.4rem"}
-     },
-     {
-       "name": "Save",
-       "feather": "Save",
-       "hasText": True,
-       "commands": ["save-state", ["response","saved"]],
-       "response": "saved",
-       "style": {"bottom": "calc(50% - 4.25rem)", "right": "0.4rem"}
-     },
-     {
-       "name": "Run",
-       "feather": "Play",
-       "primary": True,
-       "hasText": True,
-       "showWithIcon": True,
-       "commands": ["submit"],
-       "style": {"bottom": "0.44rem", "right": "0.4rem"}
-     },
-     {
-       "name": "Command",
-       "feather": "Terminal",
-       "primary": True,
-       "hasText": True,
-       "commands": ["openCommandPallete"],
-       "style": {"bottom": "3.5rem", "right": "0.4rem"}
-     }
-    ]'''
+ {
+   "name": "Copy",
+   "feather": "Copy",
+   "hasText": True,
+   "alwaysOn": True,
+   "commands": ["copyAll"],
+   "style": {"top": "0.46rem", "right": "0.4rem"}
+ },
+ {
+   "name": "Shortcuts",
+   "feather": "Type",
+   "class": "shortcuts-button",
+   "hasText": True,
+   "commands": ["toggleKeyboardShortcuts"],
+   "style": {"bottom": "calc(50% + 1.75rem)", "right": "0.4rem"}
+ },
+ {
+   "name": "Collapse",
+   "feather": "Minimize2",
+   "hasText": True,
+   "commands": ["selectall",
+                "toggleSplitSelectionIntoLines",
+                "gotolinestart",
+                "gotolinestart",
+                "backspace"],
+   "style": {"bottom": "calc(50% - 1.25rem)", "right": "0.4rem"}
+ },
+ {
+   "name": "Save",
+   "feather": "Save",
+   "hasText": True,
+   "commands": ["save-state", ["response","saved"]],
+   "response": "saved",
+   "style": {"bottom": "calc(50% - 4.25rem)", "right": "0.4rem"}
+ },
+ {
+   "name": "Run",
+   "feather": "Play",
+   "primary": True,
+   "hasText": True,
+   "showWithIcon": True,
+   "commands": ["submit"],
+   "style": {"bottom": "0.44rem", "right": "0.4rem"}
+ },
+ {
+   "name": "Command",
+   "feather": "Terminal",
+   "primary": True,
+   "hasText": True,
+   "commands": ["openCommandPallete"],
+   "style": {"bottom": "3.5rem", "right": "0.4rem"}
+ }
+]'''
 
     response_btns_demo = code_editor(btns_demo, lang="python", height=20, buttons=custom_buttons)
     st.markdown("Something you might've noticed is that the buttons on the bottom right get highlighted in a different color when the mouse is hovered over them. This is because the `primary` attribute is set to `True` for those buttons. This attribute tells Code Editor to get the color from the 'primary' config option (in the theme section of the Streamlit config file).")
@@ -179,70 +179,67 @@ with col1:
     st.markdown("For reference, here is the list of button attributes:")
 
     btn_attr_dict = '''{
-      "name":            ,# string (required) 
-      "feather":         ,# string
-      "iconSize":        ,# integer number
-      "primary":         ,# boolean
-      "hasText":         ,# boolean
-      "showWithIcon":    ,# boolean
-      "alwaysOn":        ,# boolean 
-      "style":           ,# dictionary
-      "theme":           ,# dictionary 
-      "class":           ,# string
-      "classToggle":     ,# string
-      "commands":        ,# list
-      "toggledCommands": ,# list
-    }'''
-
+  "name":            ,# string (required) 
+  "feather":         ,# string
+  "iconSize":        ,# integer number
+  "primary":         ,# boolean
+  "hasText":         ,# boolean
+  "showWithIcon":    ,# boolean
+  "alwaysOn":        ,# boolean 
+  "style":           ,# dictionary
+  "theme":           ,# dictionary 
+  "class":           ,# string
+  "classToggle":     ,# string
+  "commands":        ,# list
+  "toggledCommands": ,# list
+}'''
     st.code(btn_attr_dict, language="python")
 
     st.markdown("### Info bar")
     st.markdown("The info bar is a component within Code Editor that can be used to display information. Adding one is similar to adding a button. You pass a dictionary to the `info` argument of the `code_editor` function. The dictionary should have the following attributes:")
 
     info_attr_dict = '''{
-      "name":    ,# string
-      "css":     ,# string
-      "style":   ,# dictionary
-      "info":    ,# Array of dictionaries
-    }'''
+  "name":    ,# string
+  "css":     ,# string
+  "style":   ,# dictionary
+  "info":    ,# Array of dictionaries
+}'''
     st.code(info_attr_dict, language="python")
 
     st.markdown("Example: Info bar with a single info item")
     info_ex_dict = """# css to inject related to info bar
-    css_string = \'''\nbackground-color: #bee1e5;\n\nbody > #root .ace-streamlit-dark~& {\n   background-color: #262830;\n}\n\n.ace-streamlit-dark~& span {\n   color: #fff;\n   opacity: 0.6;\n}\n\nspan {\n   color: #000;\n   opacity: 0.5;\n}\n\n.code_editor-info.message {\n   width: inherit;\n   margin-right: 75px;\n   order: 2;\n   text-align: center;\n   opacity: 0;\n   transition: opacity 0.7s ease-out;\n}\n\n.code_editor-info.message.show {\n   opacity: 0.6;\n}\n\n.ace-streamlit-dark~& .code_editor-info.message.show {\n   opacity: 0.5;\n}\n\''' 
-
-    # create info bar dictionary
-    info_bar = {
-      "name": "language info",
-      "css": css_string,
-      "style": {
-                "order": "1",
-                "display": "flex",
-                "flexDirection": "row",
-                "alignItems": "center",
-                "width": "100%",
-                "height": "2.5rem",
-                "padding": "0rem 0.75rem",
-                "borderRadius": "8px 8px 0px 0px",
-                "zIndex": "9993"
-               },
-      "info": [{
-                "name": "python",
-                "style": {"width": "100px"}
-               }]
-    }
-
-    # add info bar to code editor
-    response_dict = code_editor(your_code_string, lang="python", height=20, info=info_bar)"""
+css_string = \'''\nbackground-color: #bee1e5;\n\nbody > #root .ace-streamlit-dark~& {\n   background-color: #262830;\n}\n\n.ace-streamlit-dark~& span {\n   color: #fff;\n   opacity: 0.6;\n}\n\nspan {\n   color: #000;\n   opacity: 0.5;\n}\n\n.code_editor-info.message {\n   width: inherit;\n   margin-right: 75px;\n   order: 2;\n   text-align: center;\n   opacity: 0;\n   transition: opacity 0.7s ease-out;\n}\n\n.code_editor-info.message.show {\n   opacity: 0.6;\n}\n\n.ace-streamlit-dark~& .code_editor-info.message.show {\n   opacity: 0.5;\n}\n\'''
+# create info bar dictionary
+info_bar = {
+  "name": "language info",
+  "css": css_string,
+  "style": {
+            "order": "1",
+            "display": "flex",
+            "flexDirection": "row",
+            "alignItems": "center",
+            "width": "100%",
+            "height": "2.5rem",
+            "padding": "0rem 0.75rem",
+            "borderRadius": "8px 8px 0px 0px",
+            "zIndex": "9993"
+           },
+  "info": [{
+            "name": "python",
+            "style": {"width": "100px"}
+           }]
+}
+# add info bar to code editor
+response_dict = code_editor(your_code_string, lang="python", height=20, info=info_bar)"""
     response_info_ex = code_editor(info_ex_dict, lang="python", height=20, info=info_bar)
     st.markdown("There is a lot going on here with css and style that will be covered in the next section. For now, consider the `info` attribute. To add info items to the info bar, you add a dictionary to the list given to the `info` attribute. An info item dictionary can have the following attributes:")
 
     info_item_attr_dict = '''{
-      "name":    ,# string containing displayed text (required)
-      "class":   ,# string
-      "style":   ,# dictionary
-      "theme":   ,# dictionary
-    }'''
+  "name":    ,# string containing displayed text (required)
+  "class":   ,# string
+  "style":   ,# dictionary
+  "theme":   ,# dictionary
+}'''
 
     st.code(info_item_attr_dict, language="python")
 
@@ -250,26 +247,25 @@ with col1:
     st.markdown("When you add an info bar with at least one info item to the code editor, an additional, special info item is added to the bar that is specifically setup to display text sent to it via the 'infoMessage' command. ")
 
     code_btns_info = '''# create copy button with 'infoMessage' command
-    custom_btns = [{
-        "name": "Copy",
-        "feather": "Copy",
-        "hasText": True,
-        "alwaysOn": True,
-        "commands": ["copyAll", 
-                     ["infoMessage", 
-                      {
-                       "text":"Copied to clipboard!",
-                       "timeout": 2500, 
-                       "classToggle": "show"
-                      }
-                     ]
-                    ],
-        "style": {"right": "0.4rem"}
-      }]
-
-    # add button and previous info bar to code editor
-    response_dict = code_editor(your_code_string, lang="python", height=20, info=info_bar, buttons=custom_btns)
-    '''
+  custom_btns = [{
+      "name": "Copy",
+      "feather": "Copy",
+      "hasText": True,
+      "alwaysOn": True,
+      "commands": ["copyAll", 
+                   ["infoMessage", 
+                    {
+                     "text":"Copied to clipboard!",
+                     "timeout": 2500, 
+                     "classToggle": "show"
+                    }
+                   ]
+                  ],
+      "style": {"right": "0.4rem"}
+    }]
+  # add button and previous info bar to code editor
+  response_dict = code_editor(your_code_string, lang="python", height=20, info=info_bar, buttons=custom_btns)
+  '''
 
     response_btn_info_msg = code_editor(code_btns_info, lang="python", height=20, info=info_bar, buttons=[{
         "name": "Copy",

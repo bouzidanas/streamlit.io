@@ -5,7 +5,7 @@
  * The following array contains all the commands that are available 
  * in the Code Editor by default starting with the ones already built
  * into the Ace Editor.
- */
+ ********************************************************************/
 [{
     name: "showSettingsMenu",
     description: "Show settings menu",
