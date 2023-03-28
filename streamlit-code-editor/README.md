@@ -5,24 +5,25 @@ A code editor component for streamlit.io apps, built on top of react-ace, with c
 
 ## Installation
 Install [streamlit-code-editor](https://pypi.org/project/streamlit-code-editor/) with pip:
-```
+```bash
 pip install streamlit_code_editor
 ```
 Alternatively, you can download the source from the [download page](https://pypi.org/project/streamlit-code-editor/#files) and after unzipping, install with:
-```
+```bash
 python setup.py install
 ```
 (make sure you are in the same directory as 'setup.py' in the unzipped folder).
 
 ## Usage
 To add a Code Editor to Streamlit python app, import `code_editor` and then call the `code_editor` function with the code you want to edit (as a string):
-```
+```python
+import streamlit as st
 from code_editor import code_editor
 
 response_dict = code_editor(your_code_string)
 ```
 Without specifying a language, the editor will default to `python`. You can also specify a language with the `lang` argument:
-```
+```python
 # The default value for the lang argument is "python"
 response_dict = code_editor(your_code_string, lang="javascript")
 ```
@@ -31,7 +32,7 @@ By default, each code editor is styled like streamlit's code component. We will 
 
 ### Height
 The height of the code editor can be set with the `height` argument. The height argument takes one of three types of values: a string, an integer number, or an list of two integers.
-```
+```python
 # set height of editor to 500 pixels
 response_dict = code_editor(your_code_string, height="500px")
 
@@ -63,7 +64,7 @@ Values 'dark' and 'light' will select 'streamlit-dark' and 'streamlit-light' res
 ### Shortcuts
 The built-in Ace Editor comes with four keyboard handlers: 'vim', 'emacs', 'vscode', and 'sublime'. The keyboard handler dictates what keyboard keys and key combinations will do by default. You can select the handler to start the editor with using the `shortcuts` argument. The `shortcuts` argument takes one of four string values: 'vim', 'emacs', 'vscode', 'sublime'. The default value for `shortcuts` is 'vscode'.
 
-```
+```python
 # set keyboard handler to 'vim'
 response_dict = code_editor(your_code_string, shortcuts="vim")
 ```
@@ -71,7 +72,7 @@ response_dict = code_editor(your_code_string, shortcuts="vim")
 ### Focus
 You can focus the editor when it loads by setting the `focus` argument to `True`. The default value for `focus` is `False`.
 
-```
+```python
 # set focus to True
 response_dict = code_editor(your_code_string, focus=True)
 ```
