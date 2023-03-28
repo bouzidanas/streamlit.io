@@ -1,4 +1,12 @@
-exports.commands = [{
+/*************************** IMPORTANT!! ****************************
+ * The contents of this file are compiled from multiple source files.
+ * This is only for reference!
+ * 
+ * The following array contains all the commands that are available 
+ * in the Code Editor by default starting with the ones already built
+ * into the Ace Editor.
+ */
+[{
     name: "showSettingsMenu",
     description: "Show settings menu",
     bindKey: bindKey("Ctrl-,", "Command-,"),
@@ -9,7 +17,8 @@ exports.commands = [{
         });
     },
     readOnly: true
-}, {
+}, 
+{
     name: "goToNextError",
     description: "Go to next error",
     bindKey: bindKey("Alt-E", "F4"),
@@ -20,7 +29,8 @@ exports.commands = [{
     },
     scrollIntoView: "animate",
     readOnly: true
-}, {
+}, 
+{
     name: "goToPreviousError",
     description: "Go to previous error",
     bindKey: bindKey("Alt-Shift-E", "Shift-F4"),
@@ -31,19 +41,22 @@ exports.commands = [{
     },
     scrollIntoView: "animate",
     readOnly: true
-}, {
+}, 
+{
     name: "selectall",
     description: "Select all",
     bindKey: bindKey("Ctrl-A", "Command-A"),
     exec: function (editor) { editor.selectAll(); },
     readOnly: true
-}, {
+}, 
+{
     name: "centerselection",
     description: "Center selection",
     bindKey: bindKey(null, "Ctrl-L"),
     exec: function (editor) { editor.centerSelection(); },
     readOnly: true
-}, {
+}, 
+{
     name: "gotoline",
     description: "Go to line...",
     bindKey: bindKey("Ctrl-L", "Command-L"),
@@ -53,21 +66,24 @@ exports.commands = [{
         editor.prompt({ $type: "gotoLine" });
     },
     readOnly: true
-}, {
+}, 
+{
     name: "fold",
     bindKey: bindKey("Alt-L|Ctrl-F1", "Command-Alt-L|Command-F1"),
     exec: function (editor) { editor.session.toggleFold(false); },
     multiSelectAction: "forEach",
     scrollIntoView: "center",
     readOnly: true
-}, {
+}, 
+{
     name: "unfold",
     bindKey: bindKey("Alt-Shift-L|Ctrl-Shift-F1", "Command-Alt-Shift-L|Command-Shift-F1"),
     exec: function (editor) { editor.session.toggleFold(true); },
     multiSelectAction: "forEach",
     scrollIntoView: "center",
     readOnly: true
-}, {
+}, 
+{
     name: "toggleFoldWidget",
     description: "Toggle fold widget",
     bindKey: bindKey("F2", "F2"),
@@ -75,7 +91,8 @@ exports.commands = [{
     multiSelectAction: "forEach",
     scrollIntoView: "center",
     readOnly: true
-}, {
+}, 
+{
     name: "toggleParentFoldWidget",
     description: "Toggle parent fold widget",
     bindKey: bindKey("Alt-F2", "Alt-F2"),
@@ -83,21 +100,24 @@ exports.commands = [{
     multiSelectAction: "forEach",
     scrollIntoView: "center",
     readOnly: true
-}, {
+}, 
+{
     name: "foldall",
     description: "Fold all",
     bindKey: bindKey(null, "Ctrl-Command-Option-0"),
     exec: function (editor) { editor.session.foldAll(); },
     scrollIntoView: "center",
     readOnly: true
-}, {
+}, 
+{
     name: "foldAllComments",
     description: "Fold all comments",
     bindKey: bindKey(null, "Ctrl-Command-Option-0"),
     exec: function (editor) { editor.session.foldAllComments(); },
     scrollIntoView: "center",
     readOnly: true
-}, {
+}, 
+{
     name: "foldOther",
     description: "Fold other",
     bindKey: bindKey("Alt-0", "Command-Option-0"),
@@ -107,14 +127,16 @@ exports.commands = [{
     },
     scrollIntoView: "center",
     readOnly: true
-}, {
+}, 
+{
     name: "unfoldall",
     description: "Unfold all",
     bindKey: bindKey("Alt-Shift-0", "Command-Option-Shift-0"),
     exec: function (editor) { editor.session.unfold(); },
     scrollIntoView: "center",
     readOnly: true
-}, {
+}, 
+{
     name: "findnext",
     description: "Find next",
     bindKey: bindKey("Ctrl-K", "Command-G"),
@@ -122,7 +144,8 @@ exports.commands = [{
     multiSelectAction: "forEach",
     scrollIntoView: "center",
     readOnly: true
-}, {
+}, 
+{
     name: "findprevious",
     description: "Find previous",
     bindKey: bindKey("Ctrl-Shift-K", "Command-Shift-G"),
@@ -130,7 +153,8 @@ exports.commands = [{
     multiSelectAction: "forEach",
     scrollIntoView: "center",
     readOnly: true
-}, {
+}, 
+{
     name: "selectOrFindNext",
     description: "Select or find next",
     bindKey: bindKey("Alt-K", "Ctrl-G"),
@@ -141,7 +165,8 @@ exports.commands = [{
             editor.findNext();
     },
     readOnly: true
-}, {
+}, 
+{
     name: "selectOrFindPrevious",
     description: "Select or find previous",
     bindKey: bindKey("Alt-Shift-K", "Ctrl-Shift-G"),
@@ -152,7 +177,8 @@ exports.commands = [{
             editor.findPrevious();
     },
     readOnly: true
-}, {
+}, 
+{
     name: "find",
     description: "Find",
     bindKey: bindKey("Ctrl-F", "Command-F"),
@@ -160,13 +186,15 @@ exports.commands = [{
         config.loadModule("ace/ext/searchbox", function (e) { e.Search(editor); });
     },
     readOnly: true
-}, {
+}, 
+{
     name: "overwrite",
     description: "Overwrite",
     bindKey: "Insert",
     exec: function (editor) { editor.toggleOverwrite(); },
     readOnly: true
-}, {
+}, 
+{
     name: "selecttostart",
     description: "Select to start",
     bindKey: bindKey("Ctrl-Shift-Home", "Command-Shift-Home|Command-Shift-Up"),
@@ -175,7 +203,8 @@ exports.commands = [{
     readOnly: true,
     scrollIntoView: "animate",
     aceCommandGroup: "fileJump"
-}, {
+}, 
+{
     name: "gotostart",
     description: "Go to start",
     bindKey: bindKey("Ctrl-Home", "Command-Home|Command-Up"),
@@ -184,7 +213,8 @@ exports.commands = [{
     readOnly: true,
     scrollIntoView: "animate",
     aceCommandGroup: "fileJump"
-}, {
+}, 
+{
     name: "selectup",
     description: "Select up",
     bindKey: bindKey("Shift-Up", "Shift-Up|Ctrl-Shift-P"),
@@ -192,7 +222,8 @@ exports.commands = [{
     multiSelectAction: "forEach",
     scrollIntoView: "cursor",
     readOnly: true
-}, {
+}, 
+{
     name: "golineup",
     description: "Go line up",
     bindKey: bindKey("Up", "Up|Ctrl-P"),
@@ -200,7 +231,8 @@ exports.commands = [{
     multiSelectAction: "forEach",
     scrollIntoView: "cursor",
     readOnly: true
-}, {
+}, 
+{
     name: "selecttoend",
     description: "Select to end",
     bindKey: bindKey("Ctrl-Shift-End", "Command-Shift-End|Command-Shift-Down"),
@@ -209,7 +241,8 @@ exports.commands = [{
     readOnly: true,
     scrollIntoView: "animate",
     aceCommandGroup: "fileJump"
-}, {
+}, 
+{
     name: "gotoend",
     description: "Go to end",
     bindKey: bindKey("Ctrl-End", "Command-End|Command-Down"),
@@ -218,7 +251,8 @@ exports.commands = [{
     readOnly: true,
     scrollIntoView: "animate",
     aceCommandGroup: "fileJump"
-}, {
+}, 
+{
     name: "selectdown",
     description: "Select down",
     bindKey: bindKey("Shift-Down", "Shift-Down|Ctrl-Shift-N"),
@@ -226,7 +260,8 @@ exports.commands = [{
     multiSelectAction: "forEach",
     scrollIntoView: "cursor",
     readOnly: true
-}, {
+}, 
+{
     name: "golinedown",
     description: "Go line down",
     bindKey: bindKey("Down", "Down|Ctrl-N"),
@@ -234,7 +269,8 @@ exports.commands = [{
     multiSelectAction: "forEach",
     scrollIntoView: "cursor",
     readOnly: true
-}, {
+}, 
+{
     name: "selectwordleft",
     description: "Select word left",
     bindKey: bindKey("Ctrl-Shift-Left", "Option-Shift-Left"),
@@ -242,7 +278,8 @@ exports.commands = [{
     multiSelectAction: "forEach",
     scrollIntoView: "cursor",
     readOnly: true
-}, {
+}, 
+{
     name: "gotowordleft",
     description: "Go to word left",
     bindKey: bindKey("Ctrl-Left", "Option-Left"),
@@ -250,7 +287,8 @@ exports.commands = [{
     multiSelectAction: "forEach",
     scrollIntoView: "cursor",
     readOnly: true
-}, {
+}, 
+{
     name: "selecttolinestart",
     description: "Select to line start",
     bindKey: bindKey("Alt-Shift-Left", "Command-Shift-Left|Ctrl-Shift-A"),
@@ -258,7 +296,8 @@ exports.commands = [{
     multiSelectAction: "forEach",
     scrollIntoView: "cursor",
     readOnly: true
-}, {
+}, 
+{
     name: "gotolinestart",
     description: "Go to line start",
     bindKey: bindKey("Alt-Left|Home", "Command-Left|Home|Ctrl-A"),
@@ -266,7 +305,8 @@ exports.commands = [{
     multiSelectAction: "forEach",
     scrollIntoView: "cursor",
     readOnly: true
-}, {
+}, 
+{
     name: "selectleft",
     description: "Select left",
     bindKey: bindKey("Shift-Left", "Shift-Left|Ctrl-Shift-B"),
@@ -274,7 +314,8 @@ exports.commands = [{
     multiSelectAction: "forEach",
     scrollIntoView: "cursor",
     readOnly: true
-}, {
+}, 
+{
     name: "gotoleft",
     description: "Go to left",
     bindKey: bindKey("Left", "Left|Ctrl-B"),
@@ -282,7 +323,8 @@ exports.commands = [{
     multiSelectAction: "forEach",
     scrollIntoView: "cursor",
     readOnly: true
-}, {
+}, 
+{
     name: "selectwordright",
     description: "Select word right",
     bindKey: bindKey("Ctrl-Shift-Right", "Option-Shift-Right"),
@@ -290,7 +332,8 @@ exports.commands = [{
     multiSelectAction: "forEach",
     scrollIntoView: "cursor",
     readOnly: true
-}, {
+}, 
+{
     name: "gotowordright",
     description: "Go to word right",
     bindKey: bindKey("Ctrl-Right", "Option-Right"),
@@ -298,7 +341,8 @@ exports.commands = [{
     multiSelectAction: "forEach",
     scrollIntoView: "cursor",
     readOnly: true
-}, {
+}, 
+{
     name: "selecttolineend",
     description: "Select to line end",
     bindKey: bindKey("Alt-Shift-Right", "Command-Shift-Right|Shift-End|Ctrl-Shift-E"),
@@ -306,7 +350,8 @@ exports.commands = [{
     multiSelectAction: "forEach",
     scrollIntoView: "cursor",
     readOnly: true
-}, {
+}, 
+{
     name: "gotolineend",
     description: "Go to line end",
     bindKey: bindKey("Alt-Right|End", "Command-Right|End|Ctrl-E"),
@@ -314,7 +359,8 @@ exports.commands = [{
     multiSelectAction: "forEach",
     scrollIntoView: "cursor",
     readOnly: true
-}, {
+}, 
+{
     name: "selectright",
     description: "Select right",
     bindKey: bindKey("Shift-Right", "Shift-Right"),
@@ -322,7 +368,8 @@ exports.commands = [{
     multiSelectAction: "forEach",
     scrollIntoView: "cursor",
     readOnly: true
-}, {
+}, 
+{
     name: "gotoright",
     description: "Go to right",
     bindKey: bindKey("Right", "Right|Ctrl-F"),
@@ -330,55 +377,64 @@ exports.commands = [{
     multiSelectAction: "forEach",
     scrollIntoView: "cursor",
     readOnly: true
-}, {
+}, 
+{
     name: "selectpagedown",
     description: "Select page down",
     bindKey: "Shift-PageDown",
     exec: function (editor) { editor.selectPageDown(); },
     readOnly: true
-}, {
+}, 
+{
     name: "pagedown",
     description: "Page down",
     bindKey: bindKey(null, "Option-PageDown"),
     exec: function (editor) { editor.scrollPageDown(); },
     readOnly: true
-}, {
+}, 
+{
     name: "gotopagedown",
     description: "Go to page down",
     bindKey: bindKey("PageDown", "PageDown|Ctrl-V"),
     exec: function (editor) { editor.gotoPageDown(); },
     readOnly: true
-}, {
+}, 
+{
     name: "selectpageup",
     description: "Select page up",
     bindKey: "Shift-PageUp",
     exec: function (editor) { editor.selectPageUp(); },
     readOnly: true
-}, {
+}, 
+{
     name: "pageup",
     description: "Page up",
     bindKey: bindKey(null, "Option-PageUp"),
     exec: function (editor) { editor.scrollPageUp(); },
     readOnly: true
-}, {
+}, 
+{
     name: "gotopageup",
     description: "Go to page up",
     bindKey: "PageUp",
     exec: function (editor) { editor.gotoPageUp(); },
     readOnly: true
-}, {
+}, 
+{
     name: "scrollup",
     description: "Scroll up",
     bindKey: bindKey("Ctrl-Up", null),
     exec: function (e) { e.renderer.scrollBy(0, -2 * e.renderer.layerConfig.lineHeight); },
     readOnly: true
-}, {
+}, 
+{
     name: "scrolldown",
     description: "Scroll down",
     bindKey: bindKey("Ctrl-Down", null),
     exec: function (e) { e.renderer.scrollBy(0, 2 * e.renderer.layerConfig.lineHeight); },
     readOnly: true
-}, {
+}, 
+{
     name: "selectlinestart",
     description: "Select line start",
     bindKey: "Shift-Home",
@@ -386,7 +442,8 @@ exports.commands = [{
     multiSelectAction: "forEach",
     scrollIntoView: "cursor",
     readOnly: true
-}, {
+}, 
+{
     name: "selectlineend",
     description: "Select line end",
     bindKey: "Shift-End",
@@ -394,19 +451,22 @@ exports.commands = [{
     multiSelectAction: "forEach",
     scrollIntoView: "cursor",
     readOnly: true
-}, {
+}, 
+{
     name: "togglerecording",
     description: "Toggle recording",
     bindKey: bindKey("Ctrl-Alt-E", "Command-Option-E"),
     exec: function (editor) { editor.commands.toggleRecording(editor); },
     readOnly: true
-}, {
+}, 
+{
     name: "replaymacro",
     description: "Replay macro",
     bindKey: bindKey("Ctrl-Shift-E", "Command-Shift-E"),
     exec: function (editor) { editor.commands.replay(editor); },
     readOnly: true
-}, {
+}, 
+{
     name: "jumptomatching",
     description: "Jump to matching",
     bindKey: bindKey("Ctrl-\\|Ctrl-P", "Command-\\"),
@@ -414,7 +474,8 @@ exports.commands = [{
     multiSelectAction: "forEach",
     scrollIntoView: "animate",
     readOnly: true
-}, {
+}, 
+{
     name: "selecttomatching",
     description: "Select to matching",
     bindKey: bindKey("Ctrl-Shift-\\|Ctrl-Shift-P", "Command-Shift-\\"),
@@ -422,7 +483,8 @@ exports.commands = [{
     multiSelectAction: "forEach",
     scrollIntoView: "animate",
     readOnly: true
-}, {
+}, 
+{
     name: "expandToMatching",
     description: "Expand to matching",
     bindKey: bindKey("Ctrl-Shift-M", "Ctrl-Shift-M"),
@@ -430,14 +492,16 @@ exports.commands = [{
     multiSelectAction: "forEach",
     scrollIntoView: "animate",
     readOnly: true
-}, {
+}, 
+{
     name: "passKeysToBrowser",
     description: "Pass keys to browser",
     bindKey: bindKey(null, null),
     exec: function () { },
     passEvent: true,
     readOnly: true
-}, {
+}, 
+{
     name: "copy",
     description: "Copy",
     exec: function (editor) {
@@ -457,118 +521,136 @@ exports.commands = [{
     },
     scrollIntoView: "cursor",
     multiSelectAction: "forEach"
-}, {
+}, 
+{
     name: "paste",
     description: "Paste",
     exec: function (editor, args) {
         editor.$handlePaste(args);
     },
     scrollIntoView: "cursor"
-}, {
+}, 
+{
     name: "removeline",
     description: "Remove line",
     bindKey: bindKey("Ctrl-D", "Command-D"),
     exec: function (editor) { editor.removeLines(); },
     scrollIntoView: "cursor",
     multiSelectAction: "forEachLine"
-}, {
+}, 
+{
     name: "duplicateSelection",
     description: "Duplicate selection",
     bindKey: bindKey("Ctrl-Shift-D", "Command-Shift-D"),
     exec: function (editor) { editor.duplicateSelection(); },
     scrollIntoView: "cursor",
     multiSelectAction: "forEach"
-}, {
+}, 
+{
     name: "sortlines",
     description: "Sort lines",
     bindKey: bindKey("Ctrl-Alt-S", "Command-Alt-S"),
     exec: function (editor) { editor.sortLines(); },
     scrollIntoView: "selection",
     multiSelectAction: "forEachLine"
-}, {
+}, 
+{
     name: "togglecomment",
     description: "Toggle comment",
     bindKey: bindKey("Ctrl-/", "Command-/"),
     exec: function (editor) { editor.toggleCommentLines(); },
     multiSelectAction: "forEachLine",
     scrollIntoView: "selectionPart"
-}, {
+}, 
+{
     name: "toggleBlockComment",
     description: "Toggle block comment",
     bindKey: bindKey("Ctrl-Shift-/", "Command-Shift-/"),
     exec: function (editor) { editor.toggleBlockComment(); },
     multiSelectAction: "forEach",
     scrollIntoView: "selectionPart"
-}, {
+}, 
+{
     name: "modifyNumberUp",
     description: "Modify number up",
     bindKey: bindKey("Ctrl-Shift-Up", "Alt-Shift-Up"),
     exec: function (editor) { editor.modifyNumber(1); },
     scrollIntoView: "cursor",
     multiSelectAction: "forEach"
-}, {
+}, 
+{
     name: "modifyNumberDown",
     description: "Modify number down",
     bindKey: bindKey("Ctrl-Shift-Down", "Alt-Shift-Down"),
     exec: function (editor) { editor.modifyNumber(-1); },
     scrollIntoView: "cursor",
     multiSelectAction: "forEach"
-}, {
+}, 
+{
     name: "replace",
     description: "Replace",
     bindKey: bindKey("Ctrl-H", "Command-Option-F"),
     exec: function (editor) {
         config.loadModule("ace/ext/searchbox", function (e) { e.Search(editor, true); });
     }
-}, {
+}, 
+{
     name: "undo",
     description: "Undo",
     bindKey: bindKey("Ctrl-Z", "Command-Z"),
     exec: function (editor) { editor.undo(); }
-}, {
+}, 
+{
     name: "redo",
     description: "Redo",
     bindKey: bindKey("Ctrl-Shift-Z|Ctrl-Y", "Command-Shift-Z|Command-Y"),
     exec: function (editor) { editor.redo(); }
-}, {
+}, 
+{
     name: "copylinesup",
     description: "Copy lines up",
     bindKey: bindKey("Alt-Shift-Up", "Command-Option-Up"),
     exec: function (editor) { editor.copyLinesUp(); },
     scrollIntoView: "cursor"
-}, {
+}, 
+{
     name: "movelinesup",
     description: "Move lines up",
     bindKey: bindKey("Alt-Up", "Option-Up"),
     exec: function (editor) { editor.moveLinesUp(); },
     scrollIntoView: "cursor"
-}, {
+}, 
+{
     name: "copylinesdown",
     description: "Copy lines down",
     bindKey: bindKey("Alt-Shift-Down", "Command-Option-Down"),
     exec: function (editor) { editor.copyLinesDown(); },
     scrollIntoView: "cursor"
-}, {
+}, 
+{
     name: "movelinesdown",
     description: "Move lines down",
     bindKey: bindKey("Alt-Down", "Option-Down"),
     exec: function (editor) { editor.moveLinesDown(); },
     scrollIntoView: "cursor"
-}, {
+}, 
+{
     name: "del",
     description: "Delete",
     bindKey: bindKey("Delete", "Delete|Ctrl-D|Shift-Delete"),
     exec: function (editor) { editor.remove("right"); },
     multiSelectAction: "forEach",
     scrollIntoView: "cursor"
-}, {
+}, 
+{
     name: "backspace",
     description: "Backspace",
     bindKey: bindKey("Shift-Backspace|Backspace", "Ctrl-Backspace|Shift-Backspace|Backspace|Ctrl-H"),
     exec: function (editor) { editor.remove("left"); },
     multiSelectAction: "forEach",
     scrollIntoView: "cursor"
-}, {
+}, 
+{
     name: "cut_or_delete",
     description: "Cut or delete",
     bindKey: bindKey("Shift-Delete", null),
@@ -582,21 +664,24 @@ exports.commands = [{
     },
     multiSelectAction: "forEach",
     scrollIntoView: "cursor"
-}, {
+}, 
+{
     name: "removetolinestart",
     description: "Remove to line start",
     bindKey: bindKey("Alt-Backspace", "Command-Backspace"),
     exec: function (editor) { editor.removeToLineStart(); },
     multiSelectAction: "forEach",
     scrollIntoView: "cursor"
-}, {
+}, 
+{
     name: "removetolineend",
     description: "Remove to line end",
     bindKey: bindKey("Alt-Delete", "Ctrl-K|Command-Delete"),
     exec: function (editor) { editor.removeToLineEnd(); },
     multiSelectAction: "forEach",
     scrollIntoView: "cursor"
-}, {
+}, 
+{
     name: "removetolinestarthard",
     description: "Remove to line start hard",
     bindKey: bindKey("Ctrl-Shift-Backspace", null),
@@ -607,7 +692,8 @@ exports.commands = [{
     },
     multiSelectAction: "forEach",
     scrollIntoView: "cursor"
-}, {
+}, 
+{
     name: "removetolineendhard",
     description: "Remove to line end hard",
     bindKey: bindKey("Ctrl-Shift-Delete", null),
@@ -618,55 +704,63 @@ exports.commands = [{
     },
     multiSelectAction: "forEach",
     scrollIntoView: "cursor"
-}, {
+}, 
+{
     name: "removewordleft",
     description: "Remove word left",
     bindKey: bindKey("Ctrl-Backspace", "Alt-Backspace|Ctrl-Alt-Backspace"),
     exec: function (editor) { editor.removeWordLeft(); },
     multiSelectAction: "forEach",
     scrollIntoView: "cursor"
-}, {
+}, 
+{
     name: "removewordright",
     description: "Remove word right",
     bindKey: bindKey("Ctrl-Delete", "Alt-Delete"),
     exec: function (editor) { editor.removeWordRight(); },
     multiSelectAction: "forEach",
     scrollIntoView: "cursor"
-}, {
+}, 
+{
     name: "outdent",
     description: "Outdent",
     bindKey: bindKey("Shift-Tab", "Shift-Tab"),
     exec: function (editor) { editor.blockOutdent(); },
     multiSelectAction: "forEach",
     scrollIntoView: "selectionPart"
-}, {
+}, 
+{
     name: "indent",
     description: "Indent",
     bindKey: bindKey("Tab", "Tab"),
     exec: function (editor) { editor.indent(); },
     multiSelectAction: "forEach",
     scrollIntoView: "selectionPart"
-}, {
+}, 
+{
     name: "blockoutdent",
     description: "Block outdent",
     bindKey: bindKey("Ctrl-[", "Ctrl-["),
     exec: function (editor) { editor.blockOutdent(); },
     multiSelectAction: "forEachLine",
     scrollIntoView: "selectionPart"
-}, {
+}, 
+{
     name: "blockindent",
     description: "Block indent",
     bindKey: bindKey("Ctrl-]", "Ctrl-]"),
     exec: function (editor) { editor.blockIndent(); },
     multiSelectAction: "forEachLine",
     scrollIntoView: "selectionPart"
-}, {
+}, 
+{
     name: "insertstring",
     description: "Insert string",
     exec: function (editor, str) { editor.insert(str); },
     multiSelectAction: "forEach",
     scrollIntoView: "cursor"
-}, {
+}, 
+{
     name: "inserttext",
     description: "Insert text",
     exec: function (editor, args) {
@@ -674,42 +768,48 @@ exports.commands = [{
     },
     multiSelectAction: "forEach",
     scrollIntoView: "cursor"
-}, {
+}, 
+{
     name: "splitline",
     description: "Split line",
     bindKey: bindKey(null, "Ctrl-O"),
     exec: function (editor) { editor.splitLine(); },
     multiSelectAction: "forEach",
     scrollIntoView: "cursor"
-}, {
+}, 
+{
     name: "transposeletters",
     description: "Transpose letters",
     bindKey: bindKey("Alt-Shift-X", "Ctrl-T"),
     exec: function (editor) { editor.transposeLetters(); },
     multiSelectAction: function (editor) { editor.transposeSelections(1); },
     scrollIntoView: "cursor"
-}, {
+}, 
+{
     name: "touppercase",
     description: "To uppercase",
     bindKey: bindKey("Ctrl-U", "Ctrl-U"),
     exec: function (editor) { editor.toUpperCase(); },
     multiSelectAction: "forEach",
     scrollIntoView: "cursor"
-}, {
+}, 
+{
     name: "tolowercase",
     description: "To lowercase",
     bindKey: bindKey("Ctrl-Shift-U", "Ctrl-Shift-U"),
     exec: function (editor) { editor.toLowerCase(); },
     multiSelectAction: "forEach",
     scrollIntoView: "cursor"
-}, {
+}, 
+{
     name: "autoindent",
     description: "Auto Indent",
     bindKey: bindKey(null, null),
     exec: function (editor) { editor.autoIndent(); },
     multiSelectAction: "forEachLine",
     scrollIntoView: "animate"
-}, {
+}, 
+{
     name: "expandtoline",
     description: "Expand to line",
     bindKey: bindKey("Ctrl-Shift-L", "Command-Shift-L"),
@@ -722,11 +822,13 @@ exports.commands = [{
     multiSelectAction: "forEach",
     scrollIntoView: "cursor",
     readOnly: true
-}, {
+}, 
+{
     name: "openlink",
     bindKey: bindKey("Ctrl+F3", "F3"),
     exec: function (editor) { editor.openLink(); }
-}, {
+}, 
+{
     name: "joinlines",
     description: "Join lines",
     bindKey: bindKey(null, null),
@@ -761,7 +863,8 @@ exports.commands = [{
     },
     multiSelectAction: "forEach",
     readOnly: true
-}, {
+}, 
+{
     name: "invertSelection",
     description: "Invert selection",
     bindKey: bindKey(null, null),
@@ -796,7 +899,8 @@ exports.commands = [{
     },
     readOnly: true,
     scrollIntoView: "none"
-}, {
+}, 
+{
     name: "addLineAfter",
     description: "Add new line after the current line",
     exec: function (editor) {
@@ -806,7 +910,8 @@ exports.commands = [{
     },
     multiSelectAction: "forEach",
     scrollIntoView: "cursor"
-}, {
+}, 
+{
     name: "addLineBefore",
     description: "Add new line before the current line",
     exec: function (editor) {
@@ -819,7 +924,8 @@ exports.commands = [{
     },
     multiSelectAction: "forEach",
     scrollIntoView: "cursor"
-}, {
+}, 
+{
     name: "openCommandPallete",
     description: "Open command palette",
     bindKey: bindKey("F1", "F1"),
@@ -827,7 +933,8 @@ exports.commands = [{
         editor.prompt({ $type: "commands" });
     },
     readOnly: true
-}, {
+}, 
+{
     name: "modeSelect",
     description: "Change language mode...",
     bindKey: bindKey(null, null),
@@ -835,4 +942,255 @@ exports.commands = [{
         editor.prompt({ $type: "modes" });
     },
     readOnly: true
-}];
+},
+//The following commands are added to AceEditor by CodeEditor (inside CodeEditor.tsx)
+{
+    name: 'submit', //name for the key binding.
+    description: "Send 'submit' response", //description of the command
+    bindKey: { win: 'Ctrl-Enter', mac: 'Command-Enter' }, //key combination used for the command.
+    exec: (editor: any) => {
+      const outgoingMode = editor.getSession().$modeId.split("/").pop();
+      Streamlit.setComponentValue({text: editor.getValue(), type: "submit", lang: outgoingMode });
+    }
+  },
+  {
+    name: 'saveState',
+    description: "Save state",
+    bindKey: { win: 'Ctrl-Alt-S', mac: 'Command-Alt-S' },
+    exec: (editor: ace.Ace.Editor) => {
+      setCode(editor.getValue());
+    }
+  },
+  {
+    name: 'copyAll',
+    description: "Copy all text to clipboard",
+    exec: (editor: ace.Ace.Editor) => {
+      unsecureCopyTextToClipboard(editor.getValue());
+    }
+  },
+  {
+    name: 'reset',
+    exec: () => {
+      resetEditor();
+    }
+  },
+  {
+    name: 'keepFocus',
+    description: "Return cursor to editor",
+    exec: () => {
+      keepFocus.current = true;
+    }
+  },
+  {
+    name: "setMode",
+    description: "Set language mode",
+    exec: (editor: ace.Ace.Editor, lang: string) => {
+        if(lang && typeof lang === "string")
+          editor.getSession().setMode("ace/mode/" + lang);
+    },
+    readOnly: true
+  },
+  {
+    name: "changeShortcuts",
+    description: "Switch shortcuts",
+    exec: (editor: any, shortcuts?: string) => {
+      if(shortcuts && typeof shortcuts === "string")
+        editor.setKeyboardHandler("ace/keyboard/" + shortcuts);
+      else {
+        //rotate through the available keyboard handlers
+        const handlers = ["ace/keyboard/vim", "ace/keyboard/emacs", "ace/keyboard/sublime", "ace/keyboard/vscode"];
+        const currentHandler = handlers[(handlers.indexOf(editor.$keybindingId) + 1) % 4];
+        editor.setKeyboardHandler(currentHandler);
+      }
+    },
+    readOnly: true
+  },
+  {
+    name: 'toggleKeyboardShortcuts',
+    exec: (editor: ace.Ace.Editor) => {
+      if(!document.getElementById('kbshortcutmenu'))
+        editor.execCommand('showKeyboardShortcuts');
+      else 
+        editor.execCommand('simulateKeyPress', {type:"keydown", keyCode: 27});
+    }
+  },
+  {
+    name: 'simulateKeyPress',
+    exec: (editor: ace.Ace.Editor, args: {type: string, key?: string, keyCode?: number}) => {
+      if(args.key)
+        document.dispatchEvent(new KeyboardEvent(args.type,{'key': args.key})); 
+      else if(args.keyCode)
+        document.dispatchEvent(new KeyboardEvent(args.type,{'keyCode': args.keyCode})); 
+    }
+  },
+  {
+    name: 'infoMessage',
+    description: "Display message in info bar",
+    exec: (editor: ace.Ace.Editor, args: {text: string, timeout?: number, classToggle?: string, targetQueryString?: string} ) => {
+      if(args.targetQueryString){
+        const target = document.querySelector(args.targetQueryString) as HTMLElement;
+        if(target){
+          target.innerText = args.text;
+          target.classList.add(args.classToggle || "")
+          if(args.timeout){
+            timeoutId = setTimeout(() => {
+              target.classList.remove(args.classToggle || "");
+            }, args.timeout);
+          }
+        }
+      }
+      else if(infoTextRef.current){
+        infoTextRef.current.innerText = args.text;
+        infoTextRef.current.classList.add(args.classToggle || "");
+        if(args.timeout){
+          timeoutId = setTimeout(() => {
+            infoTextRef.current?.classList.remove(args.classToggle || "");
+          }, args.timeout);
+        }
+      }
+    }
+  },
+  {
+    name: 'response', //name for the key binding.
+    description: "Send custom response", //description of the command
+    exec: (editor: any, responseType = "") => {
+      const outgoingMode = editor.getSession().$modeId.split("/").pop();
+      Streamlit.setComponentValue({ text: code, type: responseType, lang: outgoingMode });
+    }
+  },
+  {
+    name: 'editSnippets',
+    description: "Edit snippets",
+    bindKey: { win: 'Ctrl-Alt-M', mac: 'Command-Alt-M' },
+    exec: (editor: any) => {
+      const snippetManager = ace.require('ace/snippets').snippetManager;
+      if(baseSession.current){
+        const outgoingMode = editor.getSession().$modeId.split("/").pop();
+        if(outgoingMode === "snippets"){
+          const snippetText = editor.getSession().getValue();
+          editor.setSession(baseSession.current);
+          baseSession.current = null;
+          setCode(editor.getSession().getValue());
+          if(outgoingMode === "snippets"){}
+          try{
+            const snippetsPlusMinus = snippetText.split("###~~~")[1];
+            const [snippetsPlus, snippetsMinus] = snippetsPlusMinus.split("###---");
+            const snippetsToAdd = snippetsPlus.split("###+++")[1];
+            const snippetsToRemove = snippetsMinus;
+            const langMode = editor.getSession().$modeId.split("/").pop();
+            setSnippetAddRemove({[langMode] : [snippetAddRemove[langMode][0] + snippetsToAdd, snippetAddRemove[langMode][1] + snippetsToRemove]});
+          } catch (error) {
+            editor.execCommand("infoMessage",{text: "error parsing file, restoring original file", timeout: 2000, classToggle: "show"});
+          }
+        }
+      } else {
+        const langMode = editor.getSession().$modeId.split("/").pop()
+        const snippetConcatText = `\n###~~~#(DO NOT EDIT THIS LINE)
+# Commented out above are all the snippets that are currently
+# registered for ${args['lang']} mode.
+\n\n###+++#(DO NOT EDIT THIS LINE) \n# Put the snippets you want to add below this line.\n\n\n\n
+\n\n\n###---#(DO NOT EDIT THIS LINE) \n# Put the snippets you want to remove below this line.\n\n\n\n\n\n\n`;
+        const snippetText = "#" + createSnippets(snippetManager.snippetMap[langMode].map((snip: any) => ({name: snip.name, code: snip.content}))).replace(/\n/g, "\n#") + snippetConcatText;
+        // snippetManager.files[editor.getSession().$modeId].snippetText
+        const lineCount = (snippetText.match(/\n/g) || []).length;
+        baseSession.current = editor.getSession();
+        const snippetsSession = ace.createEditSession(snippetText, "ace/mode/snippets");
+        editor.setSession(snippetsSession);
+        const cursorPos = {row: (lineCount - 15)>0? lineCount - 15 : 0, column: 0};
+        editor.moveCursorTo(cursorPos.row, cursorPos.column);
+        editor.renderer.scrollCursorIntoView(cursorPos, 0.5);
+      }
+    }
+  },
+  {
+    name: 'editKeyBindings',
+    description: "Edit keybindings",
+    bindKey: { win: 'Ctrl-Alt-B', mac: 'Command-Alt-B' },
+    exec: (editor: any) => {
+      ace.require('ace/autocomplete').Autocomplete.for(editor);
+      if(baseSession.current){
+        const outgoingMode = editor.getSession().$modeId.split("/").pop();
+        if(outgoingMode === "json"){
+          const keybindingsJSON = editor.getSession().getValue();
+          editor.setSession(baseSession.current);
+          baseSession.current = null;
+          setCode(editor.getSession().getValue());
+          try{
+            setKeybindingAddRemove(JSON.parse(keybindingsJSON));
+          } catch (error) {
+            editor.execCommand("infoMessage",{text: "error parsing file, restoring original file", timeout: 2000, classToggle: "show"});
+          }
+        }
+      } else {
+        const keybindings = {commands: {}, completer: {}};
+        if(editor.completer && editor.completer.keyboardHandler.commands){
+          keybindings.completer = Object.keys(editor.completer.keyboardHandler.commands).map((key: any) => ({bindkey: editor.completer.keyboardHandler.commands[key].bindKey ?? "", name: editor.completer.keyboardHandler.commands[key].name}));
+        }
+        if(editor.commands.commands){
+          keybindings.commands = Object.keys(editor.commands.commands).map((key: any) => ({bindkey: editor.commands.commands[key].bindKey ?? "", name: editor.commands.commands[key].name}));
+        }
+        const keybindingsJSON = JSON.stringify(keybindings, undefined, 2);
+        baseSession.current = editor.getSession();
+        const keybindingsSession = ace.createEditSession(keybindingsJSON, "ace/mode/json");
+        editor.setSession(keybindingsSession);
+      }
+    }
+  },
+  {
+    name: 'exitSession', //name for the key binding.
+    bindKey: { win: 'Esc', mac: 'Esc' },
+    description: "Return to main session (keep changes)", //description of the command
+    exec: (editor: any) => {
+      if(baseSession.current){
+        const mode = editor.getSession().$modeId.split("/").pop();
+        if (mode === "snippets")
+          editor.execCommand("editSnippets");
+        else if (mode === "json")
+          editor.execCommand("editKeyBindings");
+      }
+    }
+  },
+  {
+    name: 'abandonSession', //name for the key binding.
+    bindKey: { win: 'Ctrl-Alt-Esc', mac: 'Command-Alt-Esc' },
+    description: "Return to main session (discard changes)", //description of the command
+    exec: (editor: any) => {
+      if(baseSession.current){
+        editor.setSession(baseSession.current);
+        baseSession.current = null;
+        setCode(editor.getSession().getValue());
+      }
+    }
+  },
+  {
+    name: 'classART', //name for the key binding.
+    description: "Add/Remove/Toggle class for element", //description of the command
+    exec: (editor: any, args: {targetQueryString: string, type: string, class: string}) => {
+      if(args.targetQueryString && args.type && args.class){
+        switch(args.type){
+          case "add":
+            document.querySelectorAll(args.targetQueryString)?.forEach((el: any) => el.classList.add(args.class));
+            break;
+          case "remove":
+            document.querySelectorAll(args.targetQueryString)?.forEach((el: any) => el.classList.remove(args.class));
+            break;
+          case "toggle":
+            document.querySelectorAll(args.targetQueryString)?.forEach((el: any) => el.classList.toggle(args.class));
+            break;
+          default:
+            break;
+        }
+      }
+    }
+  },
+  {
+    name: 'conditionalExecute', //name for the key binding.
+    description: "Execute command if element exists", //description of the command
+    exec: (editor: any, args: {targetQueryString: string, command: any[], condition?: boolean}) => {
+      if(args.targetQueryString && args.command && Array.isArray(args.command)){
+        if(!(args.condition ?? true) === !document.querySelector(args.targetQueryString)){
+          typeof args.command[0] === "string" ? execute(args.command[0], args.command[1]) : console.warn("Editor command - conditionalExecute: improper command format! Command array must contain name of command as first element and arguments as second element.");
+        }
+      }
+    }
+  }]
