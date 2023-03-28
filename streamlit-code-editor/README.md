@@ -6,10 +6,6 @@ A code editor component for streamlit.io apps, built on top of react-ace, with c
 ## Installation
 Install [streamlit-code-editor](https://pypi.org/project/streamlit-code-editor/) with pip:
 ```
-python -m pip install streamlit_code_editor
-```
-replacing `python` with the correct version of python for your setup (e.g. `python3` or `python3.8`). Or if you are certain the correct version of python will be used to run pip, you can install with just:
-```
 pip install streamlit_code_editor
 ```
 Alternatively, you can download the source from the [download page](https://pypi.org/project/streamlit-code-editor/#files) and after unzipping, install with:
