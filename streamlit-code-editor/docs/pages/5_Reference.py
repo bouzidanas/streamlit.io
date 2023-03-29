@@ -66,7 +66,7 @@ table.doc .head-row{
     vertical-align: inherit;
     font-weight: bold;
     text-align: -internal-center;
-    background-color: rgb(228 245 255/.6);
+    background-color: rgb(228 245 255/.5);
     --tw-text-opacity: 1;
     color: rgb(0 66 128/var(--tw-text-opacity));
 }

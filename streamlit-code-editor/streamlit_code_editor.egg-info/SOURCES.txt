@@ -1,5 +1,6 @@
 LICENSE
 MANIFEST.in
+README.md
 setup.py
 code_editor/__init__.py
 code_editor/frontend/build/01843025c65367159319c38263f48d04.js
@@ -374,6 +375,7 @@ code_editor/frontend/build/d7cf2ff2cfce5a8766c462d361b9bf8b.js
 code_editor/frontend/build/d8d2a50e7d00d6926a59e7f0c605dd94.js
 code_editor/frontend/build/d9081202d161fd0a700316a8cb076f31.js
 code_editor/frontend/build/d917b953089af88146c9d372fae04338.js
+code_editor/frontend/build/d92b3534728e5aa0fc51e894cf7b2d71.js
 code_editor/frontend/build/daa5b3009f7d0a190395dbe21d9ff89b.js
 code_editor/frontend/build/db0489d6a9164cb0e09fc2b1a9c7f35b.js
 code_editor/frontend/build/db1f36e971cc752e709cc9ccf3e78970.js
@@ -400,7 +402,6 @@ code_editor/frontend/build/e4bd34571302089306a2275b73ccabc9.js
 code_editor/frontend/build/e5a091ce9f3db02f839cb36dd4cb83ed.js
 code_editor/frontend/build/e5f086d57eaffac1bf402e308c87b0a8.js
 code_editor/frontend/build/e6e5c919b2f511e045d3d259a8f12b6c.js
-code_editor/frontend/build/e72ce4f30a4501eee262ac041d075210.js
 code_editor/frontend/build/e856077b2667951810c754aa5696ffbb.js
 code_editor/frontend/build/e88b7914c8a46336d80ee6870837aed0.js
 code_editor/frontend/build/e8e531b8b51d386a66e3881b36ee0add.js
@@ -416,7 +417,6 @@ code_editor/frontend/build/ed2e5b8cfcf5dc3e279f34f7b6122525.js
 code_editor/frontend/build/ed467b0f1e10c0e98c4c75fa0b449b4a.js
 code_editor/frontend/build/edbd54e9b9231be01dfe502d6155a746.js
 code_editor/frontend/build/edc0ebd7ed759f2ed2082fe0d236dc0e.js
-code_editor/frontend/build/edef2bafec21b41e3a38738eb3dcf88c.js
 code_editor/frontend/build/ef68d1d2222a45a86eb6065b77b0368c.js
 code_editor/frontend/build/ef8e937a4924aa7a7ec3f1c1856f68a3.js
 code_editor/frontend/build/ef939a6546ba280ff6df495187b1fea9.js
@@ -443,6 +443,7 @@ code_editor/frontend/build/f9a561c620224bfab5a21efecbfbe15b.js
 code_editor/frontend/build/f9bf7dc81acb8807eaf82f4e307266d4.js
 code_editor/frontend/build/f9e12872a8aca64e07a75735e4404d2f.js
 code_editor/frontend/build/fae5d14d159a50986dc91ba7623cdfef.js
+code_editor/frontend/build/fafe7b33e520b9ab327172152fcbeac1.js
 code_editor/frontend/build/fc2c1d48fae7bb55b997e42e6186360b.js
 code_editor/frontend/build/fcbe79021ef2b8e24eeac38f2ebd1e6b.js
 code_editor/frontend/build/fe0c814b919ab5701ce9e9adce6c1a5a.js
@@ -450,9 +451,9 @@ code_editor/frontend/build/fe10bf958ca84418c6af95259c7b4260.js
 code_editor/frontend/build/fe64d890e7fa0c0beae6f2e7a96a7ede.js
 code_editor/frontend/build/ff8b71b1bce6feb81065d8340e07dfeb.js
 code_editor/frontend/build/index.html
-code_editor/frontend/build/static/js/2.4614c1fd.chunk.js
-code_editor/frontend/build/static/js/2.4614c1fd.chunk.js.LICENSE.txt
-code_editor/frontend/build/static/js/2.4614c1fd.chunk.js.map
+code_editor/frontend/build/static/js/2.a93cdd99.chunk.js
+code_editor/frontend/build/static/js/2.a93cdd99.chunk.js.LICENSE.txt
+code_editor/frontend/build/static/js/2.a93cdd99.chunk.js.map
 code_editor/frontend/build/static/js/main.ce42ebe5.chunk.js
 code_editor/frontend/build/static/js/main.ce42ebe5.chunk.js.map
 code_editor/frontend/build/static/js/runtime-main.ad47a231.js

@@ -64,7 +64,7 @@ with col1:
     st.code("python -m pip install streamlit_code_editor")
     st.markdown("replacing `python` with the correct version of python for your setup (e.g. `python3` or `python3.8`). Or if you are certain the correct version of python will be used to run pip, you can install with just:")
     st.code("pip install streamlit_code_editor")
-    st.markdown("Alternatively, you can download the source from the [download page](https://pypi.org/project/streamlit-code-editor/#files) and after unzipping, install with:")
+    st.markdown("Alternatively, you can download the source from the [download page](https://pypi.org/project/streamlit-code-editor/#files) or the [GitHub repository](https://github.com/bouzidanas/streamlit.io/tree/master/streamlit-code-editor) and after unzipping, install with:")
     st.code("python setup.py install")
     st.markdown("(for the above command to work, make sure you are in the same directory as 'setup.py' in the unzipped folder).")
     st.markdown("### Adding a Code Editor")
@@ -72,9 +72,9 @@ with col1:
 
 
     minimal_code = '''# All you need to add a code editor to your Streamlit app is an\n# import and a string containing your code.
-    from code_editor import code_editor
+from code_editor import code_editor
 
-    response_dict = code_editor(your_code_string)'''
+response_dict = code_editor(your_code_string)'''
 
     response_start = code_editor(minimal_code)
 
@@ -96,6 +96,7 @@ floating_side_bar = '''
     <span class="flt-bar-hd"> LINKS </span>
     <a href="https://pypi.org/project/streamlit-code-editor/">streamlit-code-editor</a>
     <a href="https://pypi.org/project/streamlit-code-editor/#files">download page</a>
+    <a href="https://github.com/bouzidanas/streamlit.io/tree/master/streamlit-code-editor">GitHub repository</a>
 </div>
 '''
 
