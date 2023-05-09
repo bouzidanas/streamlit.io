@@ -28,58 +28,15 @@ Without specifying a language, the editor will default to `python`. You can also
 response_dict = code_editor(your_code_string, lang="javascript")
 ```
 By default, each code editor is styled like streamlit's code component. We will go over how to customize the styling in a later section.
-## Basic customization
-
-### Height
-The height of the code editor can be set with the `height` argument. The height argument takes one of three types of values: a string, an integer number, or an list of two integers.
-```python
-# set height of editor to 500 pixels
-response_dict = code_editor(your_code_string, height="500px")
-
-# set height to adjust to fit up to 20 lines (and scroll if more)
-response_dict = code_editor(your_code_string, height=20)
-
-# set height to display a minimum of 10 lines and a maximum of 20 lines
-# (and scroll if more)
-response_dict = code_editor(your_code_string, height=[10, 20])
-```
-
-### Theme
-By default, the code editor chooses one of the two custom themes according to the `base` attribute of Streamlit's theme section of config options (see [Advanced features - Theming](https://docs.streamlit.io/library/advanced-features/theming) for more details). To change this behavior, use the `theme` argument of the `code_editor` function. The `theme` argument takes one of four string values: 'default', 'dark', 'light', 'contrast'.
-
-```python
-# set theme to 'streamlit-dark' if base is 'dark' and 
-# 'streamlit-light' if base is 'light'
-response_dict = code_editor(your_code_string, theme="default")
-```
-
-```python
-# set theme to 'streamlit-light' if base is 'dark' and 
-# 'streamlit-dark' if base is 'light'
-response_dict = code_editor(your_code_string, theme="contrast")
-```
-
-Values 'dark' and 'light' will select 'streamlit-dark' and 'streamlit-light' respectively. The 'default' value will choose the 'streamlit-light' theme if `base="light"` and 'streamlit-dark' if `base="dark"`. Finally, passing in 'contrast' will do the exact opposite of 'default'.
-
-### Shortcuts
-The built-in Ace Editor comes with four keyboard handlers: 'vim', 'emacs', 'vscode', and 'sublime'. The keyboard handler dictates what keyboard keys and key combinations will do by default. You can select the handler to start the editor with using the `shortcuts` argument. The `shortcuts` argument takes one of four string values: 'vim', 'emacs', 'vscode', 'sublime'. The default value for `shortcuts` is 'vscode'.
-
-```python
-# set keyboard handler to 'vim'
-response_dict = code_editor(your_code_string, shortcuts="vim")
-```
-
-### Focus
-You can focus the editor when it loads by setting the `focus` argument to `True`. The default value for `focus` is `False`.
-
-```python
-# set focus to True
-response_dict = code_editor(your_code_string, focus=True)
-```
-
-There is one very important detail to note about the `focus` feature. Focus will be given to the editor only when the value of `focus` changes from `False` to `True`. This means that if you set `focus` to `True` in the first run of the script, it will not be given focus in subsequent runs. To give focus to the editor in subsequent runs, you will have to set `focus` to `False` and then `True` again. 
+## Docs 
+[![Component Guide](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/yourGitHubName/yourRepo/yourApp/)
+![guide](./examples/resources/guide_screenshot.png)
 
 ## Demo
 
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/yourGitHubName/yourRepo/yourApp/)
+[![Component Demo](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/yourGitHubName/yourRepo/yourApp/)
+
+![demo](./examples/resources/streamlit-demo.gif)
+
+
 
