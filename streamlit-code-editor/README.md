@@ -30,6 +30,7 @@ response_dict = code_editor(your_code_string, lang="javascript")
 By default, each code editor is styled like streamlit's code component. We will go over how to customize the styling in a later section.
 ## Docs 
 [![Component Guide](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/yourGitHubName/yourRepo/yourApp/)
+![guide](./examples/resources/guide_screenshot.png)
 
 ## Demo
 
