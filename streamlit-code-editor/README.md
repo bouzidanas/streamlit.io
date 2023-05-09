@@ -35,7 +35,7 @@ By default, each code editor is styled like streamlit's code component. We will 
 
 [![Component Demo](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/yourGitHubName/yourRepo/yourApp/)
 
-![demo](https://raw.githubusercontent.com/streamlit-code-editor/examples/resources/streamlit-demo.gif)
+![demo](https://raw.githubusercontent.com/streamlit.io/dev/streamlit-code-editor/examples/resources/streamlit-demo.gif)
 
 
 
