@@ -115,7 +115,7 @@ with col1:
     st.code(btn_submit_return, language="python")
 
     st.markdown("#### Demo")
-    st.markdown("The following is an example dictionary that adds multiple buttons, some that execute single commands, some that execute response commands and some that execute multiple commands. The buttons are also positioned differently and have different features turned on or off.")
+    st.markdown("The following is an example dictionary that adds multiple buttons, some that execute single commands including response commands and some that execute multiple commands. The buttons are also positioned differently and have different features turned on or off.")
 
     btns_demo = '''[
  {
@@ -306,7 +306,7 @@ floating_side_bar = '''
     <span class="flt-bar-hd"> LINKS </span>
     <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style">style property</a>
     <a href="https://feathericons.com/">Feather</a>
-    <a href="">built-in commands</a>
+    <a href="https://github.com/bouzidanas/streamlit.io/blob/dev/streamlit-code-editor/code_editor/frontend/docs/commands.js">built-in commands</a>
 </div>
 '''
 
