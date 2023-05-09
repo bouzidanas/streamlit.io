@@ -2,18 +2,18 @@ import json
 import streamlit as st
 from code_editor import code_editor
 
-with open('resources/example_custom_buttons_bar_alt.json') as json_button_file_alt:
+with open('streamlit-code-editor/examples/resources/example_custom_buttons_bar_alt.json') as json_button_file_alt:
     custom_buttons_alt = json.load(json_button_file_alt)
 
 # Load Info bar CSS from JSON file
-with open('resources/example_info_bar.json') as json_info_file:
+with open('streamlit-code-editor/examples/resources/example_info_bar.json') as json_info_file:
     info_bar = json.load(json_info_file)
 
 # Load Code Editor CSS from file
-with open('resources/example_code_editor_css.scss') as css_file:
+with open('streamlit-code-editor/examples/resources/example_code_editor_css.scss') as css_file:
     css_text = css_file.read()
 
-with open('resources/example_python_code.py') as python_file:
+with open('streamlit-code-editor/examples/resources/example_python_code.py') as python_file:
     demo_sample_python_code = python_file.read()
 
 # construct component props dictionary (->Code Editor)
