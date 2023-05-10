@@ -30,7 +30,7 @@ const defaultOptions = {
   fontFamily: '"Source Code Pro", monospace',
   cursorStyle: "smooth",
   displayIndentGuides: false,
-  wrap: true,
+  wrap: false,
   highlightActiveLine: true,
   showPrintMargin: false,
   showLineNumbers: false,
