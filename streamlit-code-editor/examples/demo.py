@@ -49,7 +49,7 @@ btns = custom_buttons_alt
 st.markdown('<h1><a href="https://github.com/bouzidanas/streamlit.io/tree/master/streamlit-code-editor">Streamlit Code Editor</a> Demo</h1>', unsafe_allow_html=True)
 st.write("")
 with st.expander("Settings", expanded=True):
-    col_a, col_b, col_c, col_cb = st.columns([4,10,2,2])
+    col_a, col_b, col_c, col_cb = st.columns([6,12,3,3])
     col_c.markdown('<div style="height: 2.5rem;"><br/></div>', unsafe_allow_html=True)
     col_cb.markdown('<div style="height: 2.5rem;"><br/></div>', unsafe_allow_html=True)
 
