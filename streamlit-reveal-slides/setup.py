@@ -1,12 +1,12 @@
 import setuptools
 
 setuptools.setup(
-    name="streamlit-custom-component",
+    name="streamlit-reveal-slides",
     version="0.0.1",
     author="",
     author_email="",
-    description="",
-    long_description="",
+    description="reveal.js HTML presentations for streamlit",
+    long_description="create and add reveal.js HTML presentations to your streamlit app",
     long_description_content_type="text/plain",
     url="",
     packages=setuptools.find_packages(),

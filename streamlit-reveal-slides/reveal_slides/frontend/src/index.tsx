@@ -1,10 +1,10 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import MyComponent from "./MyComponent"
+import RevealSlides from "./RevealSlides"
 
 ReactDOM.render(
   <React.StrictMode>
-    <MyComponent />
+    <RevealSlides />
   </React.StrictMode>,
   document.getElementById("root")
 )
