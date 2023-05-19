@@ -1,4 +1,5 @@
 import os
+import time
 import streamlit.components.v1 as components
 
 # Create a _RELEASE constant. We'll set this to False while we're developing
@@ -43,7 +44,7 @@ else:
 # `declare_component` and call it done. The wrapper allows us to customize
 # our component's API: we can pre-process its input args, post-process its
 # output value, and add a docstring for users.
-def slides(name, key=None):
+def slides(content, height="auto", theme="black", config={}, markdown_props={}, allow_unsafe_html=False, key=None):
     """Create a new instance of "slides".
 
     Parameters
@@ -70,7 +71,7 @@ def slides(name, key=None):
     #
     # "default" is a special argument that specifies the initial return
     # value of the component before the user has interacted with it.
-    component_value = _component_func(name=name, key=key, default=0)
+    component_value = _component_func(content=content, height=height, theme=theme, config=config, markdown_props=markdown_props, allow_unsafe_html=allow_unsafe_html, key=key, default={"indexh": -1, "indexv": -1})
 
     # We could modify the value returned from the component if we wanted.
     # There's no need to do this in our simple example - but it's an option.
@@ -85,22 +86,54 @@ if not _RELEASE:
 
     st.subheader("Component with constant args")
 
-    # Create an instance of our component with a constant `name` arg, and
-    # print its output value.
-    num_clicks = slides("World")
-    st.markdown("You've clicked %s times!" % int(num_clicks))
+    sample_html = r"""<section data-background-color="#78281F" ><h1>Reveal.js + Streamlit</h1></section>
+<section>Slide 2</section>"""
+    
+    # Note that even though we put markdown in a raw string, we still need to escape the backslashes
+    # This is why we use 4 backslashes to get 2 backslashes in the latex math code
+    sample_markdown = r"""<!-- .slide: data-background-color="#283747" -->
+# Reveal.js + Streamlit
+Add <a target="_blank" href="https://revealjs.com/">Reveal.js</a> presentations to your Streamlit app.
+---
+A paragraph with some text and a markdown [link](https://hakim.se). 
+Markdown links get displayed within the parent iframe.
+--
+Another paragraph containing the same <a target="_blank" href="https://hakim.se">link</a>.
+However, this link will open in a new tab instead. 
+This is done using an HTML `<a>` tag with `target="_blank"`.
+---
+<!-- .slide: data-background-color="#78281F" -->
+## The Lorenz Equations
 
-    st.markdown("---")
-    st.subheader("Component with variable args")
+$$
+\begin{aligned}
+\dot{x} & = \sigma(y-x) \\\\
+\dot{y} & = \rho x - y - xz \\\\
+\dot{z} & = -\beta z + xy
+\end{aligned}
+$$
+---
+## Code blocks
+```js [1-2|3|4]
+let a = 1;
+let b = 2;
+let c = x => 1 + 2 + x;
+c(3);
+```
+---
+## Element attributes
+- Item 1 <!-- .element: class="fragment" data-fragment-index="2" -->
+- Item 2 <!-- .element: class="fragment" data-fragment-index="1" -->
+---
+## Last slide
+"""
 
-    # Create a second instance of our component whose `name` arg will vary
-    # based on a text_input widget.
-    #
-    # We use the special "key" argument to assign a fixed identity to this
-    # component instance. By default, when a component's arguments change,
-    # it is considered a new instance and will be re-mounted on the frontend
-    # and lose its current state. In this case, we want to vary the component's
-    # "name" argument without having it get recreated.
-    name_input = st.text_input("Enter a name", value="Streamlit")
-    num_clicks = slides(name_input, key="foo")
-    st.markdown("You've clicked %s times!" % int(num_clicks))
+    position = slides(sample_markdown, height=600, config={"width": 600, "center": True, "margin":0.2, "plugins": ["RevealMath.KaTeX", "RevealHighlight"]}, markdown_props={"data-separator-vertical":"^--$"})
+    slides(sample_html, height=600, config={"width": 600, "center": True, "margin":0.2}, allow_unsafe_html=True)
+
+    pause = st.checkbox("pause", value=False)
+    st.write("Horizontal slide position: " + str(position["indexh"]))
+    st.write("Vertical slide position: " + str(position["indexv"]))
+
+    if pause:
+        time.sleep(1000)

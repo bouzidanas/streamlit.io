@@ -1,92 +1,206 @@
 import {
   Streamlit,
-  StreamlitComponentBase,
+  ComponentProps,
   withStreamlitConnection,
+  Theme,
 } from "streamlit-component-lib"
-import React, { ReactNode } from "react"
+import { useEffect } from "react"
+
 
 import Reveal from 'reveal.js';
-import Markdown from 'reveal.js/plugin/markdown/markdown';
+import RevealMarkdown from 'reveal.js/plugin/markdown/markdown';
+import RevealHighlight from 'reveal.js/plugin/highlight/highlight';
+import RevealMath from 'reveal.js/plugin/math/math';
+import RevealSearch from 'reveal.js/plugin/search/search';
+import RevealNotes from 'reveal.js/plugin/notes/notes';
+import RevealZoom from 'reveal.js/plugin/zoom/zoom';
 
-interface State {
-  numClicks: number
-  isFocused: boolean
+
+import 'reveal.js/dist/reveal.css';
+import 'reveal.js/plugin/highlight/monokai.css';
+
+interface RevealSlidesProps extends ComponentProps {
+  args: any
+  width: number
+  disabled: boolean
+  theme?: Theme
 }
+
+const includedPlugins = {"RevealMarkdown": RevealMarkdown, "RevealHighlight": RevealHighlight, "RevealMath.KaTeX": RevealMath.KaTeX, "RevealMath.MathJax2": RevealMath.MathJax2, "RevealMath.MathJax3": RevealMath.MathJax3, "RevealSearch": RevealSearch, "RevealNotes": RevealNotes, "RevealZoom": RevealZoom}
+// const simpleCommands = {"left": Reveal.left, "right": () => {Reveal.right()}, "up": Reveal.up, "down": Reveal.down, "prev": Reveal.prev, "next": Reveal.next, "prevFragment": Reveal.prevFragment, "nextFragment": Reveal.nextFragment, "togglePause": Reveal.togglePause, "toggleAutoSlide": Reveal.toggleAutoSlide, "toggleHelp": Reveal.toggleHelp, "toggleOverview": Reveal.toggleOverview, "shuffle": Reveal.shuffle}
+// const commandsWithArgs = {slide: Reveal.slide, togglePause: Reveal.togglePause, toggleAutoSlide: Reveal.toggleAutoSlide, toggleHelp: Reveal.toggleHelp, toggleOverview: Reveal.toggleOverview}
+
 
 /**
  * This is a React-based component template. The `render()` function is called
  * automatically when your component should be re-rendered.
  */
-class RevealSlides extends StreamlitComponentBase<State> {
-  public state = { numClicks: 0, isFocused: false }
+const RevealSlides = ({ args, disabled }: RevealSlidesProps) => {  
+  
+  const configStr = JSON.stringify(args["config"])
 
-  public render = (): ReactNode => {
+  // const commandStr = JSON.stringify(args["commands"])
 
-    let deck = new Reveal({
-      plugins: [ Markdown ]
-    })
-    deck.initialize();
+  useEffect(() => {
+    // code to run on component mount goes here
+    import('../node_modules/reveal.js/dist/theme/' + args.theme + '.css')
+    // import('../node_modules/reveal.js/plugin/highlight/monokai.css')
+  }, [args.theme]);
 
-    // Arguments that are passed to the plugin in Python are accessible
-    // via `this.props.args`. Here, we access the "name" arg.
-    const name = this.props.args["name"]
-
-    // Streamlit sends us a theme object via props that we can use to ensure
-    // that our component has visuals that match the active theme in a
-    // streamlit app.
-    const { theme } = this.props
-    const style: React.CSSProperties = {}
-
-    // Maintain compatibility with older versions of Streamlit that don't send
-    // a theme object.
-    if (theme) {
-      // Use the theme object to style our button border. Alternatively, the
-      // theme style is defined in CSS vars.
-      const borderStyling = `1px solid ${
-        this.state.isFocused ? theme.primaryColor : "gray"
-      }`
-      style.border = borderStyling
-      style.outline = borderStyling
+  useEffect(() => {
+    const config = JSON.parse(configStr)
+    // code to run after render goes here
+    if (args["allow_unsafe_html"]) {
+      // do nothing
     }
+    else {
+      if ('plugins' in config){
+        var arr = config['plugins'];
+        arr.forEach(function(moduleName: string, index: number) {
+          if (moduleName in includedPlugins){
+            arr[index] = (includedPlugins as any)[moduleName];
+          }
+          else {
+            arr[index] = null;
+          }
+        });
+        config['plugins'] = arr.filter((x:any) => !!x) as any[];
+        if(!config['plugins'].includes(RevealMarkdown)){
+          config['plugins'].push(RevealMarkdown);
+        }
+      }
+      else {
+        config['plugins'] = [RevealMarkdown];
+      }
+      console.log(config['plugins']);
+    }
+    Reveal.initialize(config).then(() => {
+      // reveal.js is ready
 
-    // Show a button and some text.
-    // When the button is clicked, we'll increment our "numClicks" state
-    // variable, and send its new value back to Streamlit, where it'll
-    // be available to the Python program.
+      // For some yet to be determined reason, the highlight plugin is not initialized.
+      // Setting highlight config option highlightOnLoad to true (before passing to initialize function)
+      // does not work
+      let highlighter = Reveal.getPlugin('highlight') as any;
+      console.log(highlighter);
+      if (highlighter){
+        highlighter.init(Reveal);
+      } 
+
+      // Send slide position indecies back to Streamlit on initialization and on slide change
+      const index = Reveal.getIndices();
+      Streamlit.setComponentValue({indexh: index.h, indexv: index.v});
+      Reveal.on( 'slidechanged', event => {
+        Streamlit.setComponentValue({indexh: (event as any).indexh, indexv: (event as any).indexv});
+      });
+    });
+
+    return () => {
+      // code to run on component unmount goes here
+      Reveal.destroy();  
+    }
+  }, [configStr, args["allow_unsafe_html"]]);
+
+  useEffect(() => {
+    if (Reveal.isReady()){
+      if (disabled){
+        Reveal.togglePause(true);
+        let viewport = Reveal.getViewportElement();
+        if (viewport){
+          viewport.style.pointerEvents = "none";
+          viewport.style.cursor = "not-allowed";
+          viewport.style.opacity = "0.5";
+        }
+      }
+      else {  
+        Reveal.togglePause(false);
+        let viewport = Reveal.getViewportElement();
+        if (viewport){
+          viewport.style.pointerEvents = "auto";
+          viewport.style.cursor = "auto";
+          viewport.style.opacity = "1";
+        }
+      }
+    }
+  }, [disabled]);
+
+  //To do: add support for commands
+  //-----------------
+  // useEffect(() => {
+  //   const commands = JSON.parse(commandStr)
+  //   if (Array.isArray(commands) && commands.length > 0 && Reveal.isReady()){
+  //     commands.forEach((command: any) => {
+  //       if (typeof command === "string" && command in simpleCommands){
+  //         (simpleCommands as any)[command]();
+  //       }
+  //       else if (Array.isArray(command) && command.length > 0 && typeof command[0] === "string" && command[0] in commandsWithArgs){
+  //         if (command[0] === "slide"){
+  //           if (command.length === 3){
+  //             Reveal.slide(command[1], command[2]);
+  //           }
+  //           else if (command.length === 4){
+  //             Reveal.slide(command[1], command[2], command[3]);
+  //           }
+  //           else {
+  //             console.warn("Invalid slide command: slide command array must have 3 or 4 elements.");
+  //           }
+  //         }
+  //         else {
+  //           (commandsWithArgs as any)[command[0]](command[1]);
+  //         }
+  //       }
+  //       else {
+  //         console.warn("Invalid command: command must be a string or an array containing a string as its first element.");
+  //       }
+  //     });
+  //   }
+  //   else if (!Array.isArray(args["commands"])) {
+  //     console.warn("Invalid commands property value: commands must be an array containing at least one command.");
+  //   }
+  // }, [commandStr]);
+
+    /**
+   * resizeObserver observes changes in elements its given to observe and is used here
+   * to communicate to streamlit the height of the component that has changed
+   * so that streamlit can adjust the iframe containing the component accordingly.
+   */
+  const resizeObserver = new ResizeObserver((entries: any) => {
+    // If we know that the body will always fully contain our component (without cutting it off)
+    // then we can use docuemnt.body height instead
+    if (args["height"] === "auto" || typeof args["height"] !== "number"){
+      Streamlit.setFrameHeight((entries[0].contentBoxSize.blockSize ?? entries[0].contentRect.height)); 
+      if (Reveal.isReady()){
+        Reveal.layout();
+      }
+    }
+    else {
+      Streamlit.setFrameHeight(args["height"]);
+      if (Reveal.isReady()){
+        Reveal.layout();
+      }
+    }
+    
+  })
+
+  const observe = (divElem: any) => {
+    divElem ? resizeObserver.observe(divElem as HTMLDivElement) : resizeObserver.disconnect();
+  }
+
+  if (args["allow_unsafe_html"]) {
     return (
-      <span>
-        Hello, {name}! &nbsp;
-        <button
-          style={style}
-          onClick={this.onClicked}
-          disabled={this.props.disabled}
-          onFocus={this._onFocus}
-          onBlur={this._onBlur}
-        >
-          Click Me!
-        </button>
-      </span>
+      <div ref={observe} className="slides" dangerouslySetInnerHTML={{__html: args["content"]}}>
+      </div>
     )
   }
-
-  /** Click handler for our "Click Me!" button. */
-  private onClicked = (): void => {
-    // Increment state.numClicks, and pass the new value back to
-    // Streamlit via `Streamlit.setComponentValue`.
-    this.setState(
-      prevState => ({ numClicks: prevState.numClicks + 1 }),
-      () => Streamlit.setComponentValue(this.state.numClicks)
+  else {
+    return (
+      <div ref={observe} className="slides">
+        <section data-markdown={""} {...args["markdown_props"]}>
+          <script type={"text/template"}>
+          {args["content"]}
+          </script>
+        </section>
+      </div>
     )
-  }
-
-  /** Focus handler for our "Click Me!" button. */
-  private _onFocus = (): void => {
-    this.setState({ isFocused: true })
-  }
-
-  /** Blur handler for our "Click Me!" button. */
-  private _onBlur = (): void => {
-    this.setState({ isFocused: false })
   }
 }
 
