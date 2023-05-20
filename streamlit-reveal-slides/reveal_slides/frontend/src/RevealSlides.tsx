@@ -44,7 +44,6 @@ const RevealSlides = ({ args, disabled }: RevealSlidesProps) => {
   useEffect(() => {
     // code to run on component mount goes here
     import('../node_modules/reveal.js/dist/theme/' + args.theme + '.css')
-    // import('../node_modules/reveal.js/plugin/highlight/monokai.css')
   }, [args.theme]);
 
   useEffect(() => {
@@ -121,7 +120,7 @@ const RevealSlides = ({ args, disabled }: RevealSlidesProps) => {
     }
   }, [disabled]);
 
-  //To do: add support for commands
+  //To do: add support for commands (i.e. control slides from Streamlit)
   //-----------------
   // useEffect(() => {
   //   const commands = JSON.parse(commandStr)
@@ -156,7 +155,7 @@ const RevealSlides = ({ args, disabled }: RevealSlidesProps) => {
   //   }
   // }, [commandStr]);
 
-    /**
+  /**
    * resizeObserver observes changes in elements its given to observe and is used here
    * to communicate to streamlit the height of the component that has changed
    * so that streamlit can adjust the iframe containing the component accordingly.
