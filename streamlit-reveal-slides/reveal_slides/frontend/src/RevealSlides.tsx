@@ -72,7 +72,6 @@ const RevealSlides = ({ args, disabled }: RevealSlidesProps) => {
       else {
         config['plugins'] = [RevealMarkdown];
       }
-      console.log(config['plugins']);
     }
     Reveal.initialize(config).then(() => {
       // reveal.js is ready
@@ -81,7 +80,6 @@ const RevealSlides = ({ args, disabled }: RevealSlidesProps) => {
       // Setting highlight config option highlightOnLoad to true (before passing to initialize function)
       // does not work
       let highlighter = Reveal.getPlugin('highlight') as any;
-      console.log(highlighter);
       if (highlighter){
         highlighter.init(Reveal);
       } 
