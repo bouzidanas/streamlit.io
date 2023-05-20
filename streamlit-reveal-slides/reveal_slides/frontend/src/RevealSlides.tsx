@@ -38,7 +38,6 @@ const includedPlugins = {"RevealMarkdown": RevealMarkdown, "RevealHighlight": Re
 const RevealSlides = ({ args, disabled }: RevealSlidesProps) => {   
 
   let configStr = JSON.stringify(args["config"])
-
   // const commandStr = JSON.stringify(args["commands"])
 
   const setupConfig = (configString: string) : object => {
@@ -85,7 +84,7 @@ const RevealSlides = ({ args, disabled }: RevealSlidesProps) => {
         Reveal.layout();
       }
       catch (e){
-        console.log("Reveal.layout() failed.")
+        console.warn("Reveal.layout() call failed.")
       }
     }, 100);
 
@@ -162,10 +161,7 @@ const RevealSlides = ({ args, disabled }: RevealSlidesProps) => {
 
   useEffect(() => {
     const config = setupConfig(configStr)
-    
     Reveal.configure(config);
-    console.log("Reveal.configure() called");
-
   }, [configStr, args["allow_unsafe_html"]]);
 
   useEffect(() => {
