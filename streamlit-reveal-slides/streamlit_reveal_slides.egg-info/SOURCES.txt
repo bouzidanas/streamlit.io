@@ -61,9 +61,9 @@ reveal_slides/frontend/build/static/js/18.90e2d74e.chunk.js
 reveal_slides/frontend/build/static/js/18.90e2d74e.chunk.js.map
 reveal_slides/frontend/build/static/js/19.0abf949e.chunk.js
 reveal_slides/frontend/build/static/js/19.0abf949e.chunk.js.map
-reveal_slides/frontend/build/static/js/2.dbf890a9.chunk.js
-reveal_slides/frontend/build/static/js/2.dbf890a9.chunk.js.LICENSE.txt
-reveal_slides/frontend/build/static/js/2.dbf890a9.chunk.js.map
+reveal_slides/frontend/build/static/js/2.fc540633.chunk.js
+reveal_slides/frontend/build/static/js/2.fc540633.chunk.js.LICENSE.txt
+reveal_slides/frontend/build/static/js/2.fc540633.chunk.js.map
 reveal_slides/frontend/build/static/js/3.c4d67f71.chunk.js
 reveal_slides/frontend/build/static/js/3.c4d67f71.chunk.js.map
 reveal_slides/frontend/build/static/js/4.71ecbbd1.chunk.js
@@ -78,8 +78,8 @@ reveal_slides/frontend/build/static/js/8.86b27921.chunk.js
 reveal_slides/frontend/build/static/js/8.86b27921.chunk.js.map
 reveal_slides/frontend/build/static/js/9.fd893fed.chunk.js
 reveal_slides/frontend/build/static/js/9.fd893fed.chunk.js.map
-reveal_slides/frontend/build/static/js/main.265ba47a.chunk.js
-reveal_slides/frontend/build/static/js/main.265ba47a.chunk.js.map
+reveal_slides/frontend/build/static/js/main.c54401b6.chunk.js
+reveal_slides/frontend/build/static/js/main.c54401b6.chunk.js.map
 reveal_slides/frontend/build/static/js/runtime-main.cda34e22.js
 reveal_slides/frontend/build/static/js/runtime-main.cda34e22.js.map
 reveal_slides/frontend/build/static/media/league-gothic.080eee2a.woff

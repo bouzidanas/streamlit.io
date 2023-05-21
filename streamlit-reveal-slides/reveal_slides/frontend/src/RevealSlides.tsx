@@ -171,8 +171,6 @@ const RevealSlides = ({ args, disabled }: RevealSlidesProps) => {
         let viewport = Reveal.getViewportElement();
         if (viewport){
           viewport.style.pointerEvents = "none";
-          viewport.style.cursor = "not-allowed";
-          viewport.style.opacity = "0.5";
         }
       }
       else {  
@@ -180,8 +178,6 @@ const RevealSlides = ({ args, disabled }: RevealSlidesProps) => {
         let viewport = Reveal.getViewportElement();
         if (viewport){
           viewport.style.pointerEvents = "auto";
-          viewport.style.cursor = "auto";
-          viewport.style.opacity = "1";
         }
       }
     }
