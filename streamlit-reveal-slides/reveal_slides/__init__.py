@@ -5,7 +5,7 @@ import streamlit.components.v1 as components
 # the component, and True when we're ready to package and distribute it.
 # (This is, of course, optional - there are innumerable ways to manage your
 # release process.)
-_RELEASE = True
+_RELEASE = False
 
 # Declare a Streamlit component. `declare_component` returns a function
 # that is used to create instances of the component. We're naming this
@@ -140,11 +140,11 @@ c(3);
         margin = st.slider("Margin", min_value=0.0, max_value=0.8, value=0.1, step=0.05)
         plugins = st.multiselect("Plugins", ["RevealMath.KaTeX", "RevealHighlight", "RevealSearch", "RevealNotes", "RevealZoom", "RevealMath.MathJax2", "RevealMath.MathJax3"], ["RevealMath.KaTeX", "RevealHighlight"])
                         
-    position = slides(sample_markdown, height=height, theme=theme, config={"width": content_width, "height": content_height, "minScale": scale_range[0], "center": True, "maxScale": scale_range[1], "margin": margin, "plugins": plugins}, markdown_props={"data-separator-vertical":"^--$"}, key="foo")
+    slides(sample_markdown, height=height, theme=theme, config={"width": content_width, "height": content_height, "minScale": scale_range[0], "center": True, "maxScale": scale_range[1], "margin": margin, "plugins": plugins}, markdown_props={"data-separator-vertical":"^--$"}, key="foo")
 
 
-    pause = st.checkbox("pause", value=False)
-    st.write("Horizontal slide position: " + str(position["indexh"]))
-    st.write("Vertical slide position: " + str(position["indexv"]))
-    if ("indexf" in position):
-        st.write("Fragment: " + str(position["indexf"]))
+    # pause = st.checkbox("pause", value=False)
+    # st.write("Horizontal slide position: " + str(position["indexh"]))
+    # st.write("Vertical slide position: " + str(position["indexv"]))
+    # if ("indexf" in position):
+    #     st.write("Fragment: " + str(position["indexf"]))

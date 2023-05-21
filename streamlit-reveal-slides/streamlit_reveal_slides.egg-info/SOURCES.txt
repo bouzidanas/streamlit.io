@@ -78,8 +78,8 @@ reveal_slides/frontend/build/static/js/8.86b27921.chunk.js
 reveal_slides/frontend/build/static/js/8.86b27921.chunk.js.map
 reveal_slides/frontend/build/static/js/9.fd893fed.chunk.js
 reveal_slides/frontend/build/static/js/9.fd893fed.chunk.js.map
-reveal_slides/frontend/build/static/js/main.c54401b6.chunk.js
-reveal_slides/frontend/build/static/js/main.c54401b6.chunk.js.map
+reveal_slides/frontend/build/static/js/main.6641c370.chunk.js
+reveal_slides/frontend/build/static/js/main.6641c370.chunk.js.map
 reveal_slides/frontend/build/static/js/runtime-main.cda34e22.js
 reveal_slides/frontend/build/static/js/runtime-main.cda34e22.js.map
 reveal_slides/frontend/build/static/media/league-gothic.080eee2a.woff
