@@ -9,6 +9,9 @@ if 'reveal' not in st.session_state:
 if 'keynum' not in st.session_state:
     st.session_state['keynum'] = 0
 
+if 'update' not in st.session_state:
+    st.session_state['update'] = {}
+
 btn_settings_editor_btns = [{
     "name": "copy",
     "feather": "Copy",
@@ -101,6 +104,7 @@ markdown_response_dict = code_editor(sample_markdown, lang="html", height = 16, 
     
 if markdown_response_dict['type'] == "submit" and len(markdown_response_dict['text']) != 0:
     sample_markdown = markdown_response_dict['text']
+    st.session_state['update'] = st.session_state['reveal'].copy()
 
 with st.sidebar:
     st.header("Component Parameters")
@@ -127,11 +131,10 @@ state = rs.slides(sample_markdown,
                             "margin": margin, 
                             "plugins": plugins
                             }, 
-                    initial_state=st.session_state['reveal'],  
+                    initial_state=st.session_state['update'],  
                     markdown_props={"data-separator-vertical":"^--$"}
                     )
 
 if state != { "indexh": -1, "indexv": -1, "indexf": -1, "paused": False, "overview": False} and state != st.session_state['reveal']:
     st.session_state['reveal'] = state
     st.write(json.dumps(st.session_state['reveal'], indent=4))
-    st.experimental_rerun()
