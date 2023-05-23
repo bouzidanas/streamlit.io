@@ -18,7 +18,6 @@ import RevealZoom from 'reveal.js/plugin/zoom/zoom';
 
 import 'reveal.js/dist/reveal.css';
 import 'reveal.js/plugin/highlight/monokai.css';
-import { config } from "process";
 
 interface RevealSlidesProps extends ComponentProps {
   args: any

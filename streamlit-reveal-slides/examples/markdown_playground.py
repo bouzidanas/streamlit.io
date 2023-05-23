@@ -119,6 +119,5 @@ state = rs.slides(sample_markdown,
                             "margin": margin, 
                             "plugins": plugins
                             },   
-                    markdown_props={"data-separator-vertical":"^--$"}, 
-                    key="reveal_slides"
+                    markdown_props={"data-separator-vertical":"^--$"}
                     )
