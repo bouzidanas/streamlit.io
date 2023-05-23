@@ -118,7 +118,7 @@ elif currState["indexh"] == 2:
     elif currState["indexf"] == 1:
         st.markdown("- You can swipe horizontally or vertically to navigate through a presentation on any touch-enabled device. \n- You can use the arrow keys on your keyboard to navigate as well. \n- Navigating with the mouse is as simple as clicking the directional arrows near the edges or corners of the slides.")
     elif currState["indexf"] == 2:
-        st.markdown("- Press the `F` key on your keyboard to enter full-screen mode. Press `ESC` to exit full-screen mode. \n- Press the `O` of `ESC` key to enter and exit overview mode")
+        st.markdown("- Press the `F` key on your keyboard to enter full-screen presentation mode. Press `ESC` to exit full-screen mode. \n- Press the `O` of `ESC` key to enter and exit overview mode")
     elif currState["indexf"] == 3:
         st.write(":arrow_left: Make sure to add the search and zoom plugins to activate these features.")
         st.markdown("- Press `Ctrl` + `Shift` + `F` keys on your keyboard to open and close the search dialog. \n- Press the `Alt` key and right click to zoom in and out on the region the mouse is hovering over.")
