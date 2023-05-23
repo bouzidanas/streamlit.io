@@ -1,5 +1,4 @@
-<div align="right"> streamlit reveal slides  [![Version](https://img.shields.io/pypi/v/streamlit-reveal-slides)](https://pypi.org/project/streamlit-reveal-slides/#history) [![Downloads](https://img.shields.io/pypi/dm/streamlit-reveal-slides)](https://pypi.org/project/streamlit-reveal-slides/#files)[![Component Demo](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://bouzidanas-streamlit-i-streamlit-code-editorexamplesdemo-lq20k3.streamlit.app/)</div>
-
+streamlit reveal slides  [![Version](https://img.shields.io/pypi/v/streamlit-reveal-slides)](https://pypi.org/project/streamlit-reveal-slides/#history) [![Downloads](https://img.shields.io/pypi/dm/streamlit-reveal-slides)](https://pypi.org/project/streamlit-reveal-slides/#files) [![Component Demo](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://bouzidanas-streamlit-i-streamlit-code-editorexamplesdemo-lq20k3.streamlit.app/)
 ============
 
 <p align="center">
