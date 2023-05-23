@@ -8,8 +8,8 @@ streamlit reveal slides  [![Version](https://img.shields.io/pypi/v/streamlit-rev
 ![demo](https://github.com/bouzidanas/streamlit.io/assets/25779130/327fdefb-98e7-4798-887c-600092f86424)
 
 <p align="center">
-  <a href="https://bouzidanas-streamlit-reveal-slidesexamplesmarkdown-demo-cindcb.streamlit.app/">DEMO</a>
-  <a href="https://bouz-streamlit-reveal-slidesexamplesmarkdown-playground-614aww.streamlit.app/">PLAYGROUND</a>
+  [<a href="https://bouzidanas-streamlit-reveal-slidesexamplesmarkdown-demo-cindcb.streamlit.app/"> DEMO </a>] 
+  [<a href="https://bouz-streamlit-reveal-slidesexamplesmarkdown-playground-614aww.streamlit.app/"> PLAYGROUND </a>]
 </p>
 
 ## Installation
