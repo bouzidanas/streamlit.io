@@ -128,9 +128,12 @@ state = rs.slides(sample_markdown,
                             "plugins": plugins
                             }, 
                     initial_state=st.session_state['reveal'],  
-                    markdown_props={"data-separator-vertical":"^--$"}, key="reveal"
+                    markdown_props={"data-separator-vertical":"^--$"}, key=str(st.session_state.keynum)
                     )
 
 if state != { "indexh": -1, "indexv": -1, "indexf": -1, "paused": False, "overview": False} and state != st.session_state['reveal']:
     st.session_state['reveal'] = state
     st.write(json.dumps(st.session_state['reveal'], indent=4))
+
+if markdown_response_dict['type'] == "submit" and len(markdown_response_dict['text']) != 0:
+    st.session_state.keynum += 1
