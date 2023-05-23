@@ -136,4 +136,5 @@ if state != { "indexh": -1, "indexv": -1, "indexf": -1, "paused": False, "overvi
     st.write(json.dumps(st.session_state['reveal'], indent=4))
 
 if markdown_response_dict['type'] == "submit" and len(markdown_response_dict['text']) != 0:
-    st.session_state.keynum += 1
+    st.session_state.keynum = st.session_state.keynum + 1
+    st.experimental_rerun()
