@@ -128,5 +128,5 @@ state = rs.slides(sample_markdown,
                     markdown_props={"data-separator-vertical":"^--$"}, 
                     )
 
-if state:
+if state and state != { "indexh": -1, "indexv": -1, "indexf": -1, "paused": False, "overview": False}:
     st.session_state['reveal'] = state
