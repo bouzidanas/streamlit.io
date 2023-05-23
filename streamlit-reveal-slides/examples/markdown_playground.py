@@ -118,8 +118,7 @@ state = rs.slides(sample_markdown,
                             "maxScale": scale_range[1], 
                             "margin": margin, 
                             "plugins": plugins
-                            }, 
-                    initial_state=st.session_state['reveal'],  
+                            },   
                     markdown_props={"data-separator-vertical":"^--$"}, 
                     key="reveal_slides"
                     )
