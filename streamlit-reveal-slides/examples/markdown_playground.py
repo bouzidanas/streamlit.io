@@ -119,6 +119,12 @@ currState = rs.slides(sample_markdown,
                             "maxScale": scale_range[1], 
                             "margin": margin, 
                             "plugins": plugins
-                            },  
+                            }, 
+                    initial_state={
+                                    "indexh": 1, 
+                                    "indexv": 0,
+                                    "paused": False, 
+                                    "overview": False 
+                                    },  
                     markdown_props={"data-separator-vertical":"^--$"}, 
                     )
