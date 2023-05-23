@@ -1,7 +1,9 @@
 streamlit reveal slides  [![Version](https://img.shields.io/pypi/v/streamlit-reveal-slides)](https://pypi.org/project/streamlit-reveal-slides/#history) [![Downloads](https://img.shields.io/pypi/dm/streamlit-reveal-slides)](https://pypi.org/project/streamlit-reveal-slides/#files)
 ============
 
-<p align="justify">Create and add [reveal.js](https://revealjs.com/) HTML presentations to your streamlit app!</p>
+<p align="justify">
+  Create and add <a href="https://revealjs.com/">reveal.js</a> HTML presentations to your streamlit app!
+</p>
 
 ![demo](https://github.com/bouzidanas/streamlit.io/assets/25779130/327fdefb-98e7-4798-887c-600092f86424)
 
