@@ -19,7 +19,7 @@ btn_settings_editor_btns = [{
     "style": {"bottom": "0rem", "right": "0.4rem"}
   }]
 
-reveal_snippets = [{ "name": 'new slide (horizontal)', "code": '---\n## New Horizontal Slide\n---' },{ "name": '--', "code": '--\n## New Vertical Slide\n--' }, { "name": '<!-- .slide:', "code": '<!-- .slide:  -->'}, { "name": '<!-- .element:', "code": '<!-- .element: class="fragment" class="fragment" -->'} ]
+reveal_snippets = [{ "name": '--', "code": '---\n## New Horizontal Slide\n---' },{ "name": 'new slide (horizontal)', "code": '---\n## New Horizontal Slide\n---' },{ "name": '-', "code": '--\n## New Vertical Slide\n--' },{ "name": 'new slide (vertical)', "code": '--\n## New Vertical Slide\n--' }, { "name": '<!--', "code": '<!-- .slide:  -->'}, { "name": '<!--', "code": '<!-- .element: class="fragment" class="fragment" -->'} ]
 
 sample_markdown = r"""
 # Reveal.js + Streamlit
