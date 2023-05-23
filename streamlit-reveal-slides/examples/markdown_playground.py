@@ -108,8 +108,8 @@ markdown_response_dict = code_editor(sample_markdown, lang="html", height = 16, 
 if markdown_response_dict['type'] == "submit" and len(markdown_response_dict['text']) != 0:
     if markdown_response_dict['text'] != st.session_state['markdown']:
         sample_markdown = markdown_response_dict['text']
-        st.session_state['markdown'] = sample_markdown
         st.session_state['update'] = st.session_state['reveal'].copy()
+        st.session_state['markdown'] = sample_markdown
 
 with st.sidebar:
     st.header("Component Parameters")
