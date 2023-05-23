@@ -1,7 +1,7 @@
 streamlit reveal slides  [![Version](https://img.shields.io/pypi/v/streamlit-reveal-slides)](https://pypi.org/project/streamlit-reveal-slides/#history) [![Downloads](https://img.shields.io/pypi/dm/streamlit-reveal-slides)](https://pypi.org/project/streamlit-reveal-slides/#files)
 ============
 
-<p align="justify">
+<p align="center">
   Create and add <a href="https://revealjs.com/">reveal.js</a> HTML presentations to your streamlit app!
 </p>
 
@@ -21,7 +21,7 @@ python setup.py install
 (make sure you are in the same directory as 'setup.py' in the unzipped folder).
 
 ## Usage
-To add a reveal.js presentation to Streamlit python app, import `reveal_slides` and then call the `slides` function with the presentation contents in markdown format:
+To add a reveal.js presentation to your Streamlit (python) app, import `reveal_slides` and then call the `slides` function with the presentation contents in markdown format:
 ```python
 import streamlit as st
 import reveal_slides as rs
