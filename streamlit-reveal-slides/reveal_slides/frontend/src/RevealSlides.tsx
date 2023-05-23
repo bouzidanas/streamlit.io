@@ -4,7 +4,7 @@ import {
   withStreamlitConnection,
   Theme,
 } from "streamlit-component-lib"
-import { useEffect } from "react"
+import { useEffect, useMemo } from "react"
 
 
 import Reveal from 'reveal.js';
@@ -18,6 +18,7 @@ import RevealZoom from 'reveal.js/plugin/zoom/zoom';
 
 import 'reveal.js/dist/reveal.css';
 import 'reveal.js/plugin/highlight/monokai.css';
+import { config } from "process";
 
 interface RevealSlidesProps extends ComponentProps {
   args: any
@@ -26,7 +27,7 @@ interface RevealSlidesProps extends ComponentProps {
   theme?: Theme
 }
 
-const includedPlugins = {"RevealMarkdown": RevealMarkdown, "RevealHighlight": RevealHighlight, "RevealMath.KaTeX": RevealMath.KaTeX, "RevealMath.MathJax2": RevealMath.MathJax2, "RevealMath.MathJax3": RevealMath.MathJax3, "RevealSearch": RevealSearch, "RevealNotes": RevealNotes, "RevealZoom": RevealZoom}
+const includedPlugins = {"markdown": RevealMarkdown, "highlight": RevealHighlight, "katex": RevealMath.KaTeX, "mathjax2": RevealMath.MathJax2, "mathjax3": RevealMath.MathJax3, "search": RevealSearch, "notes": RevealNotes, "zoom": RevealZoom}
 // const simpleCommands = {"left": Reveal.left, "right": () => {Reveal.right()}, "up": Reveal.up, "down": Reveal.down, "prev": Reveal.prev, "next": Reveal.next, "prevFragment": Reveal.prevFragment, "nextFragment": Reveal.nextFragment, "togglePause": Reveal.togglePause, "toggleAutoSlide": Reveal.toggleAutoSlide, "toggleHelp": Reveal.toggleHelp, "toggleOverview": Reveal.toggleOverview, "shuffle": Reveal.shuffle}
 // const commandsWithArgs = {slide: Reveal.slide, togglePause: Reveal.togglePause, toggleAutoSlide: Reveal.toggleAutoSlide, toggleHelp: Reveal.toggleHelp, toggleOverview: Reveal.toggleOverview}
 
@@ -35,18 +36,13 @@ const includedPlugins = {"RevealMarkdown": RevealMarkdown, "RevealHighlight": Re
  * This is a React-based component template. The `render()` function is called
  * automatically when your component should be re-rendered.
  */
-const RevealSlides = ({ args, disabled }: RevealSlidesProps) => {  
-  
-  const configStr = JSON.stringify(args["config"])
+const RevealSlides = ({ args, disabled }: RevealSlidesProps) => {   
 
+  let configStr = JSON.stringify(args["config"])
+  let initStateStr = JSON.stringify(args["initial_state"])
   // const commandStr = JSON.stringify(args["commands"])
 
-  useEffect(() => {
-    // code to run on component mount goes here
-    import('../node_modules/reveal.js/dist/theme/' + args.theme + '.css')
-  }, [args.theme]);
-
-  useEffect(() => {
+  const setupConfig = (configString: string) : object => {
     const config = JSON.parse(configStr)
     // code to run after render goes here
     if (args["allow_unsafe_html"]) {
@@ -72,30 +68,140 @@ const RevealSlides = ({ args, disabled }: RevealSlidesProps) => {
         config['plugins'] = [RevealMarkdown];
       }
     }
+    return config;
+  }
+
+  useMemo(()=>{
+    // code to run on component mount goes here
+
+    // To do: remove or disable previously imported css. When the list of
+    // css imports exceed about 25, the page no longer updates.
+    import('../node_modules/reveal.js/dist/theme/' + args.theme + '.css')
+
+    // To do: figure out a way to get a callback after new css is applied
+    // The following code is a hack to get around the fact that the new css
+    // is not applied immediately
+    setTimeout(() => {
+      try{
+        Reveal.layout();
+      }
+      catch (e){
+        console.warn("Reveal.layout() call failed.")
+      }
+    }, 100);
+
+  }, [args.theme]);
+
+  useEffect(() => {
+    const config = setupConfig(configStr)
+    
+    try {
+      Reveal.destroy();
+    }
+    catch (e) {
+    }
     Reveal.initialize(config).then(() => {
       // reveal.js is ready
-
+      
       // For some yet to be determined reason, the highlight plugin is not initialized.
       // Setting highlight config option highlightOnLoad to true (before passing to initialize function)
       // does not work
+      // To Do: make sure the highlight plugin only changes the HTML involving the code once instead of many times.
+      // Possible solution is to make a change to the plugin init function.
       let highlighter = Reveal.getPlugin('highlight') as any;
       if (highlighter){
         highlighter.init(Reveal);
-      } 
+      }
+      
+      const initState = JSON.parse(initStateStr);
+      if(Object.keys(initState).length !== 0){
+        Reveal.setState(initState);
+      }
 
       // Send slide position indecies back to Streamlit on initialization and on slide change
-      const index = Reveal.getIndices();
-      Streamlit.setComponentValue({indexh: index.h, indexv: index.v});
+      const currState = Reveal.getState();
+      Streamlit.setComponentValue(currState);
       Reveal.on( 'slidechanged', event => {
-        Streamlit.setComponentValue({indexh: (event as any).indexh, indexv: (event as any).indexv});
+
+        const tempState = Reveal.getState();
+        Streamlit.setComponentValue({indexh: (event as any).indexh, indexv: (event as any).indexv, indexf: tempState.indexf, paused: tempState.paused, overview: tempState.overview});
       });
+      
+      Reveal.on( 'fragmentshown', event => {
+        // event.fragment = the fragment DOM element
+        const tempState = Reveal.getState();
+        Streamlit.setComponentValue(tempState);
+      } );
+      Reveal.on( 'fragmenthidden', event => {
+        // event.fragment = the fragment DOM element
+        const tempState = Reveal.getState();
+        Streamlit.setComponentValue(tempState);
+      } );
+      Reveal.on( 'overviewshown', event => {
+        // event.overview = the overview DOM element
+        const tempState = Reveal.getState();
+        Streamlit.setComponentValue(tempState);
+      } );
+      Reveal.on( 'overviewhidden', event => {
+        // event.overview = the overview DOM element
+        const tempState = Reveal.getState();
+        Streamlit.setComponentValue(tempState);
+      } );
+      Reveal.on( 'paused', event => {
+        // event.fragment = the fragment DOM element
+        const tempState = Reveal.getState();
+        Streamlit.setComponentValue(tempState);
+      } );
+      Reveal.on( 'resumed', event => {
+        // event.fragment = the fragment DOM element
+        const tempState = Reveal.getState();
+        Streamlit.setComponentValue(tempState);
+      } );
+
     });
 
     return () => {
       // code to run on component unmount goes here
       Reveal.destroy();  
     }
+  }, []);
+
+  // Reconfigure reveal.js if config changes
+  useEffect(() => {
+    const existingPlugins = Reveal.getPlugins();
+    const config = setupConfig(configStr)
+
+    // Add and register plugins that are not already loaded
+    let existingPluginsList : string[] = Object.values(existingPlugins).map((plugin: any) => plugin.id);
+    if('plugins' in args["config"]){
+      const plugins = args["config"]["plugins"];
+      (plugins as string[]).forEach((plugin: string) => {
+        if (plugin && existingPluginsList.indexOf(plugin) === -1){
+          console.log("register plugin: " + plugin);
+          Reveal.registerPlugin((includedPlugins as any)[plugin]);
+        }
+      });
+
+      //// Remove plugins that are no longer in the list (does not work yet..some signs there is a bug in Reveal.Plugin)
+      // Object.values(existingPlugins as {[id: string]: Reveal.Plugin;}).forEach((plugin: any) => {
+      //   if (plugin.id && plugin.id !=='markdown' && plugins.indexOf(plugin.id) === -1){
+      //     console.log("destroy plugin: " + plugin.id);
+      //     if( typeof plugin.destroy === 'function' ) {
+      //       plugin.destroy();
+      //     }
+      //   }
+      // });
+    }
+    // Reconfigure reveal.js
+    Reveal.configure(config);
   }, [configStr, args["allow_unsafe_html"]]);
+
+  useEffect(() => {
+    const initState = JSON.parse(initStateStr);
+    if (Reveal.isReady() && Object.keys(initState).length !== 0){
+      Reveal.setState(initState);
+    }
+  }, [initStateStr]);
 
   useEffect(() => {
     if (Reveal.isReady()){
@@ -104,8 +210,6 @@ const RevealSlides = ({ args, disabled }: RevealSlidesProps) => {
         let viewport = Reveal.getViewportElement();
         if (viewport){
           viewport.style.pointerEvents = "none";
-          viewport.style.cursor = "not-allowed";
-          viewport.style.opacity = "0.5";
         }
       }
       else {  
@@ -113,8 +217,6 @@ const RevealSlides = ({ args, disabled }: RevealSlidesProps) => {
         let viewport = Reveal.getViewportElement();
         if (viewport){
           viewport.style.pointerEvents = "auto";
-          viewport.style.cursor = "auto";
-          viewport.style.opacity = "1";
         }
       }
     }
