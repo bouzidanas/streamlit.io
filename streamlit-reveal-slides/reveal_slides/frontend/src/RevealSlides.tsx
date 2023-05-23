@@ -177,7 +177,6 @@ const RevealSlides = ({ args, disabled }: RevealSlidesProps) => {
       const plugins = args["config"]["plugins"];
       (plugins as string[]).forEach((plugin: string) => {
         if (plugin && existingPluginsList.indexOf(plugin) === -1){
-          console.log("register plugin: " + plugin);
           Reveal.registerPlugin((includedPlugins as any)[plugin]);
         }
       });

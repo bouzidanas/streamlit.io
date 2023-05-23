@@ -1,16 +1,6 @@
 import streamlit as st
 import reveal_slides as rs
 from code_editor import code_editor
-import json
-
-if 'reveal' not in st.session_state:
-    st.session_state['reveal'] = {}
-
-if 'keynum' not in st.session_state:
-    st.session_state['keynum'] = 0
-
-if 'update' not in st.session_state:
-    st.session_state['update'] = {}
 
 btn_settings_editor_btns = [{
     "name": "copy",
@@ -98,17 +88,12 @@ The presentation can be configured using the `config` argument of the `slides` f
 ## La fin
 """
 
-if 'markdown' not in st.session_state:
-    st.session_state['markdown'] = sample_markdown
-
 st.markdown("## STREAMLIT REVEAL.JS COMPONENT")
 
 markdown_response_dict = code_editor(sample_markdown, lang="html", height = 16, buttons=btn_settings_editor_btns)
     
 if markdown_response_dict['type'] == "submit" and len(markdown_response_dict['text']) != 0:
-    if markdown_response_dict['text'] != st.session_state['markdown']:
-        st.session_state['update'] = st.session_state['reveal'].copy()
-        st.session_state['markdown'] = sample_markdown
+    sample_markdown = markdown_response_dict['text']
 
 with st.sidebar:
     st.header("Component Parameters")
@@ -121,9 +106,7 @@ with st.sidebar:
     margin = st.slider("Margin", min_value=0.0, max_value=0.8, value=0.1, step=0.05)
     plugins = st.multiselect("Plugins", ["highlight", "katex", "mathjax2", "mathjax3", "notes", "search", "zoom"], [])
 
-st.write(json.dumps(st.session_state['reveal'], indent=4))
-# Add the streamlit-reveal-slide component to the Streamlit app.
-sample_markdown = st.session_state['markdown']                    
+# Add the streamlit-reveal-slide component to the Streamlit app.                    
 state = rs.slides(sample_markdown, 
                     height=height, 
                     theme=theme, 
@@ -136,10 +119,7 @@ state = rs.slides(sample_markdown,
                             "margin": margin, 
                             "plugins": plugins
                             }, 
-                    initial_state=st.session_state['update'],  
-                    markdown_props={"data-separator-vertical":"^--$"}
+                    initial_state=st.session_state['reveal'],  
+                    markdown_props={"data-separator-vertical":"^--$"}, 
+                    key="reveal_slides"
                     )
-
-if state != { "indexh": -1, "indexv": -1, "indexf": -1, "paused": False, "overview": False} and state != st.session_state['reveal']:
-    st.session_state['reveal'] = state
-    st.write(json.dumps(st.session_state['reveal'], indent=4))
