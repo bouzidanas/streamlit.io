@@ -107,7 +107,6 @@ markdown_response_dict = code_editor(sample_markdown, lang="html", height = 16, 
     
 if markdown_response_dict['type'] == "submit" and len(markdown_response_dict['text']) != 0:
     if markdown_response_dict['text'] != st.session_state['markdown']:
-        sample_markdown = markdown_response_dict['text']
         st.session_state['update'] = st.session_state['reveal'].copy()
         st.session_state['markdown'] = sample_markdown
 
@@ -123,7 +122,8 @@ with st.sidebar:
     plugins = st.multiselect("Plugins", ["highlight", "katex", "mathjax2", "mathjax3", "notes", "search", "zoom"], [])
 
 st.write(json.dumps(st.session_state['reveal'], indent=4))
-# Add the streamlit-reveal-slide component to the Streamlit app.                    
+# Add the streamlit-reveal-slide component to the Streamlit app.
+sample_markdown = st.session_state['markdown']                    
 state = rs.slides(sample_markdown, 
                     height=height, 
                     theme=theme, 
