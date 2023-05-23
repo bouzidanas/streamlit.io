@@ -18,6 +18,7 @@ import RevealZoom from 'reveal.js/plugin/zoom/zoom';
 
 import 'reveal.js/dist/reveal.css';
 import 'reveal.js/plugin/highlight/monokai.css';
+import { config } from "process";
 
 interface RevealSlidesProps extends ComponentProps {
   args: any
@@ -26,7 +27,7 @@ interface RevealSlidesProps extends ComponentProps {
   theme?: Theme
 }
 
-const includedPlugins = {"RevealMarkdown": RevealMarkdown, "RevealHighlight": RevealHighlight, "RevealMath.KaTeX": RevealMath.KaTeX, "RevealMath.MathJax2": RevealMath.MathJax2, "RevealMath.MathJax3": RevealMath.MathJax3, "RevealSearch": RevealSearch, "RevealNotes": RevealNotes, "RevealZoom": RevealZoom}
+const includedPlugins = {"markdown": RevealMarkdown, "highlight": RevealHighlight, "katex": RevealMath.KaTeX, "mathjax2": RevealMath.MathJax2, "mathjax3": RevealMath.MathJax3, "search": RevealSearch, "notes": RevealNotes, "zoom": RevealZoom}
 // const simpleCommands = {"left": Reveal.left, "right": () => {Reveal.right()}, "up": Reveal.up, "down": Reveal.down, "prev": Reveal.prev, "next": Reveal.next, "prevFragment": Reveal.prevFragment, "nextFragment": Reveal.nextFragment, "togglePause": Reveal.togglePause, "toggleAutoSlide": Reveal.toggleAutoSlide, "toggleHelp": Reveal.toggleHelp, "toggleOverview": Reveal.toggleOverview, "shuffle": Reveal.shuffle}
 // const commandsWithArgs = {slide: Reveal.slide, togglePause: Reveal.togglePause, toggleAutoSlide: Reveal.toggleAutoSlide, toggleHelp: Reveal.toggleHelp, toggleOverview: Reveal.toggleOverview}
 
@@ -38,6 +39,7 @@ const includedPlugins = {"RevealMarkdown": RevealMarkdown, "RevealHighlight": Re
 const RevealSlides = ({ args, disabled }: RevealSlidesProps) => {   
 
   let configStr = JSON.stringify(args["config"])
+  let initStateStr = JSON.stringify(args["initial_state"])
   // const commandStr = JSON.stringify(args["commands"])
 
   const setupConfig = (configString: string) : object => {
@@ -99,17 +101,22 @@ const RevealSlides = ({ args, disabled }: RevealSlidesProps) => {
     catch (e) {
     }
     Reveal.initialize(config).then(() => {
-      // reveal.js is ready 
-
-    // For some yet to be determined reason, the highlight plugin is not initialized.
-    // Setting highlight config option highlightOnLoad to true (before passing to initialize function)
-    // does not work
-    // To Do: make sure the highlight plugin only changes the HTML involving the code once instead of many times.
-    // Possible solution is to make a change to the plugin init function.
-    let highlighter = Reveal.getPlugin('highlight') as any;
-    if (highlighter){
-      highlighter.init(Reveal);
-    }
+      // reveal.js is ready
+      
+      // For some yet to be determined reason, the highlight plugin is not initialized.
+      // Setting highlight config option highlightOnLoad to true (before passing to initialize function)
+      // does not work
+      // To Do: make sure the highlight plugin only changes the HTML involving the code once instead of many times.
+      // Possible solution is to make a change to the plugin init function.
+      let highlighter = Reveal.getPlugin('highlight') as any;
+      if (highlighter){
+        highlighter.init(Reveal);
+      }
+      
+      const initState = JSON.parse(initStateStr);
+      if(Object.keys(initState).length !== 0){
+        Reveal.setState(initState);
+      }
 
       // Send slide position indecies back to Streamlit on initialization and on slide change
       const currState = Reveal.getState();
@@ -159,10 +166,42 @@ const RevealSlides = ({ args, disabled }: RevealSlidesProps) => {
     }
   }, []);
 
+  // Reconfigure reveal.js if config changes
   useEffect(() => {
+    const existingPlugins = Reveal.getPlugins();
     const config = setupConfig(configStr)
+
+    // Add and register plugins that are not already loaded
+    let existingPluginsList : string[] = Object.values(existingPlugins).map((plugin: any) => plugin.id);
+    if('plugins' in args["config"]){
+      const plugins = args["config"]["plugins"];
+      (plugins as string[]).forEach((plugin: string) => {
+        if (plugin && existingPluginsList.indexOf(plugin) === -1){
+          console.log("register plugin: " + plugin);
+          Reveal.registerPlugin((includedPlugins as any)[plugin]);
+        }
+      });
+
+      //// Remove plugins that are no longer in the list (does not work yet..some signs there is a bug in Reveal.Plugin)
+      // Object.values(existingPlugins as {[id: string]: Reveal.Plugin;}).forEach((plugin: any) => {
+      //   if (plugin.id && plugin.id !=='markdown' && plugins.indexOf(plugin.id) === -1){
+      //     console.log("destroy plugin: " + plugin.id);
+      //     if( typeof plugin.destroy === 'function' ) {
+      //       plugin.destroy();
+      //     }
+      //   }
+      // });
+    }
+    // Reconfigure reveal.js
     Reveal.configure(config);
   }, [configStr, args["allow_unsafe_html"]]);
+
+  useEffect(() => {
+    const initState = JSON.parse(initStateStr);
+    if (Reveal.isReady() && Object.keys(initState).length !== 0){
+      Reveal.setState(initState);
+    }
+  }, [initStateStr]);
 
   useEffect(() => {
     if (Reveal.isReady()){
