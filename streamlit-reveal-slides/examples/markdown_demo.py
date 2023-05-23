@@ -77,7 +77,7 @@ with st.sidebar:
     st.subheader("Slide Configuration")
     content_height = st.number_input("Content Height", value=900)
     content_width = st.number_input("Content Width", value=900)
-    scale_range = st.slider("Scale Range", min_value=0.0, max_value=5.0, value=[0.1, 0.5], step=0.1)
+    scale_range = st.slider("Scale Range", min_value=0.0, max_value=5.0, value=[0.1, 3.0], step=0.1)
     margin = st.slider("Margin", min_value=0.0, max_value=0.8, value=0.1, step=0.05)
     plugins = st.multiselect("Plugins", ["highlight", "katex", "mathjax2", "mathjax3", "notes", "search", "zoom"], [])
     st.subheader("Initial State")
