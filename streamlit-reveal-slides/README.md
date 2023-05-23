@@ -1,4 +1,4 @@
-streamlit reveal slides  [![Version](https://img.shields.io/pypi/v/streamlit-reveal-slides)](https://pypi.org/project/streamlit-reveal-slides/#history) [![Downloads](https://img.shields.io/pypi/dm/streamlit-reveal-slides)](https://pypi.org/project/streamlit-reveal-slides/#files)
+<p align="center">streamlit reveal slides  [![Version](https://img.shields.io/pypi/v/streamlit-reveal-slides)](https://pypi.org/project/streamlit-reveal-slides/#history) [![Downloads](https://img.shields.io/pypi/dm/streamlit-reveal-slides)](https://pypi.org/project/streamlit-reveal-slides/#files)</p>
 ============
 
 <p align="center">
