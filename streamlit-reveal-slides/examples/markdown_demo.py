@@ -163,4 +163,4 @@ elif currState["indexh"] == 6:
     st.code(sample_code_markdown, language="markdown")
     st.markdown("Also, make sure to close the code block with three more backticks on an empty line after the last line of code.")
 elif currState["indexh"] == 8:
-    st.markdown("Any option that you can pass to the `Reveal.initialize` and `Reveal.configure` functions can be passed to the component (to configure the presentation) via the `config` argument of the component's `slides` function.")
+    st.markdown("Any option that you can pass to the `Reveal.initialize` and `Reveal.config` functions can be passed to the component (to configure the presentation) via the `config` argument of the component's `slides` function.")
