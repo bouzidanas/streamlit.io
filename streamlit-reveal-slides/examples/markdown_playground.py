@@ -91,7 +91,7 @@ The presentation can be configured using the `config` argument of the `slides` f
 
 st.markdown("## STREAMLIT REVEAL.JS COMPONENT")
 
-markdown_response_dict = code_editor(sample_markdown, lang="markdown", height = 16, buttons=btn_settings_editor_btns)
+markdown_response_dict = code_editor(sample_markdown, lang="html", height = 16, buttons=btn_settings_editor_btns)
     
 if markdown_response_dict['type'] == "submit" and len(markdown_response_dict['text']) != 0:
     sample_markdown = markdown_response_dict['text']
