@@ -65,7 +65,7 @@ This is the third fragment in the slide that will appear because `data-fragment-
 This sentence appears by default when you transition into and out of this slide 
 ---
 ## Configuring the Presentation
-The presentation can be configured using the `config` parameter. Its as simple as passing a dictionary with the reveal configuration options.
+The presentation can be configured using the `config` argument of the `slides` function. Its as simple as passing a dictionary with the reveal configuration options.
 ---
 ## La fin
 """
