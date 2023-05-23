@@ -134,3 +134,4 @@ state = rs.slides(sample_markdown,
 if state != { "indexh": -1, "indexv": -1, "indexf": -1, "paused": False, "overview": False} and state != st.session_state['reveal']:
     st.session_state['reveal'] = state
     st.write(json.dumps(st.session_state['reveal'], indent=4))
+    st.experimental_rerun()
