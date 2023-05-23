@@ -2,6 +2,8 @@ import streamlit as st
 import reveal_slides as rs
 from code_editor import code_editor
 
+if 'reveal' not in st.session_state:
+    st.session_state['reveal'] = {}
 
 btn_settings_editor_btns = [{
     "name": "copy",
@@ -108,7 +110,7 @@ with st.sidebar:
     plugins = st.multiselect("Plugins", ["highlight", "katex", "mathjax2", "mathjax3", "notes", "search", "zoom"], [])
 
 # Add the streamlit-reveal-slide component to the Streamlit app.                    
-currState = rs.slides(sample_markdown, 
+st.session_state['reveal'] = rs.slides(sample_markdown, 
                     height=height, 
                     theme=theme, 
                     config={
@@ -120,11 +122,6 @@ currState = rs.slides(sample_markdown,
                             "margin": margin, 
                             "plugins": plugins
                             }, 
-                    initial_state={
-                                    "indexh": 1, 
-                                    "indexv": 0,
-                                    "paused": False, 
-                                    "overview": False 
-                                    },  
+                    initial_state=st.session_state['reveal'],  
                     markdown_props={"data-separator-vertical":"^--$"}, 
                     )
