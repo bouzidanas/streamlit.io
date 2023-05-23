@@ -1,6 +1,7 @@
 import streamlit as st
 import reveal_slides as rs
 from code_editor import code_editor
+import json
 
 if 'reveal' not in st.session_state:
     st.session_state['reveal'] = {}
@@ -109,8 +110,9 @@ with st.sidebar:
     margin = st.slider("Margin", min_value=0.0, max_value=0.8, value=0.1, step=0.05)
     plugins = st.multiselect("Plugins", ["highlight", "katex", "mathjax2", "mathjax3", "notes", "search", "zoom"], [])
 
+st.write(json.dumps(st.session_state['reveal'], indent=4))
 # Add the streamlit-reveal-slide component to the Streamlit app.                    
-st.session_state['reveal'] = rs.slides(sample_markdown, 
+state = rs.slides(sample_markdown, 
                     height=height, 
                     theme=theme, 
                     config={
@@ -125,3 +127,6 @@ st.session_state['reveal'] = rs.slides(sample_markdown,
                     initial_state=st.session_state['reveal'],  
                     markdown_props={"data-separator-vertical":"^--$"}, 
                     )
+
+if state:
+    st.session_state['reveal'] = state
