@@ -19,6 +19,8 @@ btn_settings_editor_btns = [{
     "style": {"bottom": "0rem", "right": "0.4rem"}
   }]
 
+reveal_snippets = [{ "name": '---', "code": '---\n## New Horizontal Slide\n---' },{ "name": '--', "code": '--\n## New Vertical Slide\n--' }, { "name": '<!-- .slide:', "code": '<!-- .slide:  -->'}, { "name": '<!-- .element:', "code": '<!-- .element: class="fragment" class="fragment" -->'} ]
+
 sample_markdown = r"""
 # Reveal.js + Streamlit
 Add <a target="_blank" href="https://revealjs.com/">Reveal.js</a> presentations to your Streamlit app.
@@ -90,7 +92,7 @@ The presentation can be configured using the `config` argument of the `slides` f
 
 st.markdown("## STREAMLIT REVEAL.JS COMPONENT")
 
-markdown_response_dict = code_editor(sample_markdown, lang="html", height = 16, buttons=btn_settings_editor_btns)
+markdown_response_dict = code_editor(sample_markdown, lang="html", height = 16, snippets=reveal_snippets, buttons=btn_settings_editor_btns)
     
 if markdown_response_dict['type'] == "submit" and len(markdown_response_dict['text']) != 0:
     sample_markdown = markdown_response_dict['text']
