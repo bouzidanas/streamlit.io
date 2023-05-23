@@ -27,7 +27,7 @@ response_dict = rs.slides(content_markdown)
 ```
 The `slides` function also accepts presentation content composed using markup. However, you need to set the `allow_unsafe_html` argument to `True`. Please note that the component does not do any sanitization of the markup before injecting it into the HTML presentation. This means that you are responsible for ensuring that the markup is safe and does not contain any malicious code.
 ```python
-# The default value for the lang argument is "python"
+# The default value for the allow_unsafe_html argument is False
 response_dict = rs.slides(content_markup, allow_unsafe_html=True)
 ```
 
