@@ -90,7 +90,7 @@ with st.expander("Components"):
 st.write("### Output:")
 # construct props dictionary (->Ace Editor)
 ace_props = {"style": {"borderRadius": "0px 0px 8px 8px"}}
-response_dict = code_editor(demo_sample_python_code,  height = height, lang=language, theme=theme, shortcuts=shortcuts, focus=focus, buttons=btns, info=info_bar, props=ace_props, options={"wrap": wrap})
+response_dict = code_editor(demo_sample_python_code,  height = height, lang=language, theme=theme, shortcuts=shortcuts, focus=focus, buttons=btns, info=info_bar, props=ace_props, options={"wrap": wrap}, allow_reset=True, key="code_editor_demo")
 
 if response_dict['type'] == "submit" and len(response_dict['text']) != 0:
     st.write("Response type: ", response_dict['type'])
