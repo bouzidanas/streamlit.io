@@ -68,7 +68,7 @@ with col1:
     st.markdown("### Focus")
     st.markdown("There maybe times when you want to focus the editor when it loads (to start or continue editing after script is run/re-run without having to click into the editor). You can do this by setting the `focus` argument to `True`. The default value for `focus` is `False`.")
     response_focus = code_editor('''# set focus to True\nresponse_dict = code_editor(your_code_string, focus=True)''', focus=True)
-    st.info("Focus will be given to the editor only when the value of `focus` changes from `False` to `True`. This means that if you set `focus` to `True` in the first run of the script, it will not be given focus in subsequent runs. To give focus to the editor in subsequent runs, you will have to set `focus` to `False` and then `True` again. This is to avoid giving focus to the editor when it is not intended because streamlit script re-runs are not the only cause of component re-renders (resizing the browser window, for example, can also cause components to re-render) and each time the editor re-renders, it will respond to the value of the `focus` argument. ")
+    st.info("**Note:** Focus will be given to the editor only when the value of `focus` changes from `False` to `True`. This means that if you set `focus` to `True` in the first run of the script, it will not be given focus in subsequent runs. To give focus to the editor in subsequent runs, you will have to set `focus` to `False` and then to `True` again. This is to avoid giving focus to the editor when it is not intended.")
 
 floating_side_bar = '''
 <div class="floating-side-bar">

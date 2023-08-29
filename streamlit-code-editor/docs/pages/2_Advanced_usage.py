@@ -58,10 +58,10 @@ with open('streamlit-code-editor/docs/pages/resources/code_editor.scss') as css_
 col1, col2 = st.columns([6,2])
 with col1:
     st.markdown("## Advanced usage")
-    st.markdown("Up to this point, we have not talked about what the `code_editor`function returns and the bi-directional communication capabilities of the component. There is a lot more you can do with the editor.")
+    st.markdown("This section covers the Code Editor's bi-directional capabilities, the addition of elements that add interactivity (such as buttons, info bar, and menu bar), and customization of more advanced features of the editor. Suffice it to say, there is a lot more you can do with the editor.")
 
     st.markdown("### Return value")
-    st.markdown("The return value of this code editor is the text/code contents of the editor along with a few other pieces of information. You might expect the `code_editor` function to return its contents after every edit but this is not the case. The decision was made from the start to avoid doing this because it would have been detrimental to the user experience. Communicating back to the streamlit script results in a re-run of the script and there is a period of time during this re-run where you cannot access/interact with the `code_editor` component. Even when the resulting delay between keystrokes is small, it will still noticeable impact the user experience. Instead, `code_editor` communicates back to the script (returns a dictionary containing the contents and more) when it is told to execute a command that does so. Code Editor components have a set of built-in commands, a few of which tell it to send back/return information to the script. There are a few ways the user can tell the editor to execute these commands and commands in general with the main way being through custom buttons.")
+    st.markdown("The `code_editor` function returns a dictionary containing the text/code contents of the editor as well as other usefull info. You might expect the `code_editor` function to return its contents after every edit but this is not the case. The decision was made from the start to avoid doing this because it would have been detrimental to the user experience. Communicating back to the streamlit script results in a re-run of the script which can interupt user interactions with the component and/or delay its response. Even when the resulting delay between keystrokes is small, it will still noticeable impact the user experience. Instead, `code_editor` communicates back to the script (returns a dictionary containing the contents and more) when it is told to execute a command that does so. Code Editor components have a set of built-in commands, a few of which tell it to send back/return information to the script. There are a few ways the user can tell the editor to execute these commands and commands in general with the main way being through custom buttons.")
 
     st.markdown("### Custom buttons")
     st.markdown("Adding buttons is easy. You can add a button by passing a dictionary to the `custom_buttons` argument of the `code_editor` function.")
@@ -91,28 +91,53 @@ with col1:
 }]'''
 
     response_custom_button = code_editor(custom_button_code, lang="python", buttons=[{"name": "Copy"}])
-    st.markdown("Although you cant see it yet, a button has been added. The only required attribute to add a button is the `name` attribute containing a string. The `name` attribute should contain the text that will be displayed on the button. The name attribute is also used in the id of the HTML button element so make sure it is unique. You can put any assortment of characters in the name attribute including spaces.")
+    st.markdown("Although you cant see it yet, a button has been added to the top left of the editor above. The only required attribute to add a button is the `name` attribute containing a string. The `name` attribute should contain the text that will be displayed on the button. The name attribute is also used in the id of the HTML button element so make sure it is unique. You can put any assortment of characters in the name attribute including spaces.")
     st.markdown("To show the text we have to set the `hasText` attribute to `True`.")
     response_custom_button_show = code_editor(custom_button_code_show, lang="python", buttons=[{"name": "Copy", "hasText": True}])
-    st.markdown("The result is a button with the text 'Copy' that is only visible when you hover over it. To get it to be always visible, we can set the alwaysOn attribute to True.")
+    st.markdown("The result is that a button with the text 'Copy' that is still invisible! But, what has changed here is that the button's text now becomes visible if you hover over the button (which is still in the top left corner). To get it to be always visible, we can set the alwaysOn attribute to True.")
     response_custom_button_show_always = code_editor(custom_button_code_show_always, lang="python", buttons=[{"name": "Copy", "hasText": True, "alwaysOn": True}])
-    st.markdown("The placement of the button in this example is not ideal. To position a custom button, you can use the `style` attribute. This attribute sets the buttons element's [style property](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style). By default, custom buttons have their CSS postion property set to absolute so that they can be positioned anywhere (inside the iframe containing the Code Editor component) easily.")
+    st.markdown("Now that the button is always visible, it becomes easier to see that its placement in this example is not ideal. To position a custom button, you can use the `style` attribute. This attribute sets the buttons element's [style property](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style). By default, custom buttons have their CSS postion property set to absolute so that they can be positioned anywhere (inside the iframe containing the Code Editor component) easily.")
     response_btn_show_always_right = code_editor(custom_button_code_show_always_right, lang="python", buttons=[{"name": "Copy", "hasText": True, "alwaysOn": True, "style": {"top": "0.46rem", "right": "0.4rem"}}])
-    st.markdown("What if, instead of text, you want the button to have an icon like Streamlit's code component's copy button? Code Editor allows you add any [Feather](https://feathericons.com/) icon to a custom button. To do so, set the `feather` attribute to the name of the icon you want to use. Make sure that the name of the icon is formatted: the first letter of each word separated with a dash is capitalized and the dash is removed. For example, 'alert-circle' becomes 'AlertCircle'. If we just want to show the icon, we can remove the text by removing the `hasText` attribute or setting it to `False`.")
+    st.markdown("What if, instead of text, you want the button to have an icon like Streamlit's code block element's copy button? Code Editor allows you add any [Feather](https://feathericons.com/) icon to a custom button. To do so, set the `feather` attribute to the name of the icon you want to use. Make sure that the name of the icon is formatted: the first letter of each word separated with a dash is capitalized and the dash is removed. For example, 'alert-circle' becomes 'AlertCircle'. If we just want to show the icon, we can remove the text by removing the `hasText` attribute or setting it to `False`.")
     response_btn_show_always_right_icon = code_editor(btn_show_always_right_icon, lang="python", buttons=[{"name": "Copy", "feather": "Copy", "alwaysOn": True, "style": {"top": "0.46rem", "right": "0.4rem"}}])
     st.markdown("There is still one major issue with the button. It does not do anything. To make the button do something, we have to give it a list of commands we want Code Editor to execute when the button is clicked. We can do this by giving the `commands` attribute a list of the names of the commands we want executed. You can find a list of the built-in commands [here](https://github.com/bouzidanas/streamlit.io/blob/dev/streamlit-code-editor/code_editor/frontend/docs/commands.js).")
     response_btn_show_always_right_icon_cmd = code_editor(btn_show_always_right_icon_cmd, lang="python", buttons=[{"name": "Copy", "feather": "Copy", "alwaysOn": True, "commands": ["copyAll"], "style": {"top": "0.46rem", "right": "0.4rem"}}])
     st.markdown("The 'copyAll' command simply copies the entire contents of the editor to the clipboard.")
 
+    st.markdown("For reference, here is the list of button attributes:")
+
+    btn_attr_dict = r'''{
+  "name":           ,# string (required) 
+  "feather":        ,# string
+  "iconSize":       ,# integer number
+  "primary":        ,# boolean
+  "hasText":        ,# boolean
+  "showWithIcon":   ,# boolean
+  "alwaysOn":       ,# boolean 
+  "style":          ,# dictionary
+  "theme":          ,# dictionary 
+  "class":          ,# string
+  "classToggle":    ,# string
+  "commands":       ,# list
+  "toggledCommands":,# list
+  "bindKey":        ,# {win: string, mac: string}
+}'''
+    st.code(btn_attr_dict, language="python")
+
     st.markdown("#### Response commands")
     st.markdown("Among the commands (that can be given to be executed when a button is clicked) are special commands called 'response commands' which call Streamlit's `setComponentValue` function to return a dictionary to the script. For example, the 'submit' command sends the following dictionary to the streamlit script as the return value of the `code_editor` function (corresponding to the Code Editor that executed the command):")
 
     btn_submit_return = '''{
+  "id": "unique-id", 
   "type": "submit",
   "lang": "python",
   "text": "the code in the editor",
+  "cursor": {"row": 0, "column": 0},
 }'''
     st.code(btn_submit_return, language="python")
+
+    st.info("**Note:** The `id` attribute is a unique time-based id generated for each call of `setComponentValue` and thus should be different each time the Code Editor communicates back to Streamlit.")
+    st.success("**Tip:** Setting the `key` argument of the `code_editor` function to a fixed value will preserve the Code Editor instance and prevent it from being recreated everytime the streamlit script is rerun. This results in the editor being more stable in appearance and behavior. However! This also means that the editor will not reset the response dictionary! The response dictionary will maintain the same values through reruns until the next response command is called! Remember, when a response command is called, the 'id' value changes to a new unique one.")
 
     st.markdown("#### Demo")
     st.markdown("The following is an example dictionary that adds multiple buttons, some that execute single commands including response commands and some that execute multiple commands. The buttons are also positioned differently and have different features turned on or off.")
@@ -176,25 +201,6 @@ with col1:
     st.markdown("Something you might've noticed is that the buttons on the bottom right get highlighted in a different color when the mouse is hovered over them. This is because the `primary` attribute is set to `True` for those buttons. This attribute tells Code Editor to get the color from the 'primary' config option (in the theme section of the Streamlit config file).")
     st.info("**Note:** Some commands like 'response' take an argument. This argument may be a string, a number, or a dictionary. In the case of the 'response' command, the argument is a string. To add a command that takes an argument to the `commands` attribute, instead of a string with the name of the command, you add a list of two elements to the commands list. The first element of this inner list should be a string containing the name of the command and the second element should be the argument (string|number|dictionary)")
     st.success("**Tip:** For better reusability, you can store the buttons in a file (like a JSON file) and then load the buttons from the file. This way, you can easily reuse buttons you have created for one Streamlit app in another. A side benefit is that you can change the buttons without having to change the code.")
-    st.markdown("For reference, here is the list of button attributes:")
-
-    btn_attr_dict = r'''{
-  "name":           ,# string (required) 
-  "feather":        ,# string
-  "iconSize":       ,# integer number
-  "primary":        ,# boolean
-  "hasText":        ,# boolean
-  "showWithIcon":   ,# boolean
-  "alwaysOn":       ,# boolean 
-  "style":          ,# dictionary
-  "theme":          ,# dictionary 
-  "class":          ,# string
-  "classToggle":    ,# string
-  "commands":       ,# list
-  "toggledCommands":,# list
-  "bindKey":        ,# {win: string, mac: string}
-}'''
-    st.code(btn_attr_dict, language="python")
 
     st.markdown("### Info bar")
     st.markdown("The info bar is a component within Code Editor that can be used to display information. Adding one is similar to adding a button. You pass a dictionary to the `info` argument of the `code_editor` function. The dictionary should have the following attributes:")
@@ -276,15 +282,23 @@ response_dict = code_editor(your_code_string, lang="python", height=20, info=inf
         "commands": ["copyAll", ["infoMessage", {"text":"Copied to clipboard!", "timeout": 2500, "classToggle": "show"}]],
         "style": {"right": "0.4rem"}
       }])
+    
+    st.markdown("### Commands")
+    st.markdown("There are two types of commands that fall under two categories. The two types are the commands that dont take any arguments and the ones that do. To determine if a command takes an argument or not and what argument it takes, see the [list of built-in commands](https://github.com/bouzidanas/streamlit.io/blob/dev/streamlit-code-editor/code_editor/frontend/docs/commands.js). If the `exec` attribute of a command contains a function that only takes `editor` as the argument, then that means the command requires no arguments from the user (the `editor` argument is internally provided by the editor itself). If the `exec` function takes additional arguments, then the user must provide those. Look to the following code block to determine the nature of the argument(s) you must provide.")
+    st.markdown("The two categories of commands are the ones that come built into the inner Ace Editor and the ones added by Code Editor. The [built-in commands list](https://github.com/bouzidanas/streamlit.io/blob/dev/streamlit-code-editor/code_editor/frontend/docs/commands.js) contains both starting with the Ace Editor commands.")
+    st.info("**Note:** Some commands have default keybindings. The `bindKey` property gives the keybinding for a command in the command list.")
+    st.markdown("As explained in the previous sections, buttons added to Code Editor are able to do things things thanks to commands. If you provide a list containing the names of the commands you want executed in sequence to the `commands` attribute of a button, then those commands will be executed when the button is clicked. An alternate list of commands can be provided to the `toggledCommands` attribute. These commands will be executed when the button is clicked while it is in the toggled state. This allows the buttons to do two different things depending on state (think on/off togglable buttons).")
+    st.info("**Note:** Button command lists can contain as little as one command (list of one command name string) or as many as you want. The commands will be executed in the order they are given.")
+    st.info("**Note:** Elements of command lists (in custom button dictionaries) must either be strings containing the name of a command or a list of elements starting with the name of the command followed by the argument to pass to the command for commands that take arguments.")
+    st.info("**Note:** Button command lists can contain as little as one command (list of one command name string) or as many as you want. The commands will be executed in the order they are given.")
+    st.info("**Note:** A command is created for every button that is added to Code Editor that allows the user to execute the button's commands without having to click the button. This can be useful in some circumstances.")
+    st.warning("This section is incomplete. Please check back later.", icon="⚠️")
 
     st.markdown("### Menu bar")
     st.markdown("The menu bar is another component within Code Editor that can be used to add a menu. Adding one is similar to adding the info bar. ")
     st.warning("This section is incomplete. Please check back later.", icon="⚠️")
 
     st.markdown("### Overlays")
-    st.warning("This section is incomplete. Please check back later.", icon="⚠️")
-
-    st.markdown("### Commands")
     st.warning("This section is incomplete. Please check back later.", icon="⚠️")
 
     st.markdown("### Keybindings and snippets")
