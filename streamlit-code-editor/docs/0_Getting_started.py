@@ -92,8 +92,8 @@ floating_side_bar = '''
     <a href="#adding-a-code-editor">Adding a Code Editor</a>
     <span class="flt-bar-hd"> LINKS </span>
     <a href="https://pypi.org/project/streamlit-code-editor/">streamlit-code-editor</a>
-    <a href="https://pypi.org/project/streamlit-code-editor/#files">download page</a>
-    <a href="https://github.com/bouzidanas/streamlit.io/tree/master/streamlit-code-editor">GitHub repository</a>
+    <a href="https://docs.streamlit.io/library/api-reference/text/st.code">code block element</a>
+    
 </div>
 '''
 
