@@ -79,6 +79,7 @@ with st.sidebar:
     content_width = st.number_input("Content Width", value=900)
     scale_range = st.slider("Scale Range", min_value=0.0, max_value=5.0, value=[0.1, 3.0], step=0.1)
     margin = st.slider("Margin", min_value=0.0, max_value=0.8, value=0.1, step=0.05)
+    transition = st.selectbox("Transition", ["slide", "convex", "concave", "zoom", "none"])
     plugins = st.multiselect("Plugins", ["highlight", "katex", "mathjax2", "mathjax3", "notes", "search", "zoom"], [])
     st.subheader("Initial State")
     hslidePos = st.number_input("Horizontal Slide Position", value=0)
@@ -92,6 +93,7 @@ currState = rs.slides(sample_markdown,
                     height=height, 
                     theme=theme, 
                     config={
+                            "transition": transition,
                             "width": content_width, 
                             "height": content_height, 
                             "minScale": scale_range[0], 
