@@ -284,11 +284,30 @@ response_dict = code_editor(your_code_string, lang="python", height=20, info=inf
       }])
     
     st.markdown("### Commands")
-    st.markdown("There are two types of commands that fall under two categories. The two types are the commands that dont take any arguments and the ones that do. To determine if a command takes an argument or not and what argument it takes, see the [list of built-in commands](https://github.com/bouzidanas/streamlit.io/blob/dev/streamlit-code-editor/code_editor/frontend/docs/commands.js). If the `exec` attribute of a command contains a function that only takes `editor` as the argument, then that means the command requires no arguments from the user (the `editor` argument is internally provided by the editor itself). If the `exec` function takes additional arguments, then the user must provide those. Look to the following code block to determine the nature of the argument(s) you must provide.")
-    st.markdown("The two categories of commands are the ones that come built into the inner Ace Editor and the ones added by Code Editor. The [built-in commands list](https://github.com/bouzidanas/streamlit.io/blob/dev/streamlit-code-editor/code_editor/frontend/docs/commands.js) contains both starting with the Ace Editor commands.")
+    st.markdown("There are two types of commands that fall under two categories. The two types are the commands that dont take any arguments and the ones that do. To determine if a command takes an argument or not and what argument it takes, see the list of [built-in commands](https://github.com/bouzidanas/streamlit.io/blob/dev/streamlit-code-editor/code_editor/frontend/docs/commands.js). For example:")
+    st.code('''
+{
+    name: "centerselection",
+    description: "Center selection",
+    bindKey: bindKey(null, "Ctrl-L"),
+    exec: function (editor) { editor.centerSelection(); },
+    readOnly: true
+}, 
+{
+    name: "gotoline",
+    description: "Go to line...",
+    bindKey: bindKey("Ctrl-L", "Command-L"),
+    exec: function (editor, line) {
+        if (typeof line === "number" && !isNaN(line))
+            editor.gotoLine(line);
+        editor.prompt({ $type: "gotoLine" });
+    },
+    readOnly: true
+}''', language="javascript")
+    st.markdown("If the `exec` attribute of a command contains a function that only takes `editor` as the argument, then that means the command requires no arguments from the user (the `editor` argument is internally provided by the editor itself). If the `exec` function takes additional arguments, then the user must provide those. Look to the following code block to determine the nature of the argument(s) you must provide.")
+    st.markdown("The two categories of commands are the ones that come built into the inner Ace Editor and the ones added by Code Editor. The [built-in commands](https://github.com/bouzidanas/streamlit.io/blob/dev/streamlit-code-editor/code_editor/frontend/docs/commands.js) list contains both starting with the Ace Editor commands.")
     st.info("**Note:** Some commands have default keybindings. The `bindKey` property gives the keybinding for a command in the command list.")
     st.markdown("As explained in the previous sections, buttons added to Code Editor are able to do things things thanks to commands. If you provide a list containing the names of the commands you want executed in sequence to the `commands` attribute of a button, then those commands will be executed when the button is clicked. An alternate list of commands can be provided to the `toggledCommands` attribute. These commands will be executed when the button is clicked while it is in the toggled state. This allows the buttons to do two different things depending on state (think on/off togglable buttons).")
-    st.info("**Note:** Button command lists can contain as little as one command (list of one command name string) or as many as you want. The commands will be executed in the order they are given.")
     st.info("**Note:** Elements of command lists (in custom button dictionaries) must either be strings containing the name of a command or a list of elements starting with the name of the command followed by the argument to pass to the command for commands that take arguments.")
     st.info("**Note:** Button command lists can contain as little as one command (list of one command name string) or as many as you want. The commands will be executed in the order they are given.")
     st.info("**Note:** A command is created for every button that is added to Code Editor that allows the user to execute the button's commands without having to click the button. This can be useful in some circumstances.")
