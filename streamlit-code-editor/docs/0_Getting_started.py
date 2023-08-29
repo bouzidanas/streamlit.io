@@ -64,9 +64,6 @@ with col1:
     st.code("python -m pip install streamlit_code_editor")
     st.markdown("replacing `python` with the correct version of python for your setup (e.g. `python3` or `python3.8`). Or if you are certain the correct version of python will be used to run pip, you can install with just:")
     st.code("pip install streamlit_code_editor")
-    st.markdown("Alternatively, you can download the source from the [download page](https://pypi.org/project/streamlit-code-editor/#files) or the [GitHub repository](https://github.com/bouzidanas/streamlit.io/tree/master/streamlit-code-editor) and after unzipping, install with:")
-    st.code("python setup.py install")
-    st.markdown("(for the above command to work, make sure you are in the same directory as 'setup.py' in the unzipped folder).")
     st.markdown("### Adding a Code Editor")
     st.markdown("After importing the module, you can call the `code_editor` function with just a string:")
 
@@ -85,7 +82,7 @@ response_dict = code_editor(your_code_string)'''
     response_start_with_lang = code_editor(minimal_code_with_lang)
 
     st.markdown("The two blocks of code above are displayed in code editors. As the name of the component implies, you can edit the code. Try it out! ")
-    st.markdown("By default, each code editor is styled like streamlit's code component. We will go over how to customize the styling in a later section.")
+    st.markdown("By default, each code editor is styled like streamlit's [code block element](https://docs.streamlit.io/library/api-reference/text/st.code). The next sections will go over how to customize the styling of the editor.")
 
 floating_side_bar = '''
 <div class="floating-side-bar">
