@@ -2,6 +2,11 @@ import json
 import streamlit as st
 from code_editor import code_editor
 
+st.set_page_config(
+    page_title='Code Editor Documentation',
+    initial_sidebar_state="expanded"
+)
+
 html_style_string = '''<style>
 @media (min-width: 576px)
 section div.block-container {
