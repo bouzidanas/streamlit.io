@@ -1,3 +1,7 @@
+>**Warning**
+>This project has moved over to [bouzidanas/streamlit-reveal-slides](https://github.com/bouzidanas/streamlit-reveal-slides).
+>Please visit new location for updated information (docs/demos/resources)
+
 streamlit reveal slides  [![Version](https://img.shields.io/pypi/v/streamlit-reveal-slides)](https://pypi.org/project/streamlit-reveal-slides/#history) [![Downloads](https://img.shields.io/pypi/dm/streamlit-reveal-slides)](https://pypi.org/project/streamlit-reveal-slides/#files) [![Component Demo](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://bouzidanas-streamlit-reveal-slidesexamplesmarkdown-demo-cindcb.streamlit.app/)
 ============
 
