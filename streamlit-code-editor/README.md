@@ -1,3 +1,6 @@
+>**Warning**
+>This project has moved over to [bouzidanas/streamlit-code-editor](https://github.com/bouzidanas/streamlit-code-editor) since v0.0.9
+
 streamlit code editor  [![Version](https://img.shields.io/pypi/v/streamlit-code-editor)](https://pypi.org/project/streamlit-code-editor/#history) [![Downloads](https://img.shields.io/pypi/dm/streamlit-code-editor)](https://pypi.org/project/streamlit-code-editor/#files)
 ============
 
